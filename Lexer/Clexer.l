@@ -11,7 +11,7 @@ OCTAL_CONST             0[0-7]*
 HEX_CONST               0(x|X){HEX_DIGIT}+
 
 INTEGER_CONST           ({DECIMAL_CONST}|{OCTAL_CONST}|{HEX_CONST})(([Ll][uU]?)|([Uu][Ll]?))?
-CHAR_CONST              L?\'([^\\\'\n]|{ESCAPE_SEQ})*\'
+CHAR_CONST              L?\'([^\\\'\n]|{ESCAPE_SEQ})+\'
 
 FRAC_CONST              (({DIGIT}+)?\.{DIGIT}+|{DIGIT}+\.)
 EXP_PART                [eE][-\+]?{DIGIT}+
@@ -20,24 +20,39 @@ FLOAT_CONST             ({FRAC_CONST}{EXP_PART}?[flFL]?|{DIGIT}+{EXP_PART}[flFL]
 %{
 #include <iostream>
 #include <sstream>
+#include <string>
+#include <algorithm>
+
 using namespace std;
-string curFile="-";
-int curLine;
+string curFile="";
+int curLine = 0;
 int curSourceLine = 1;
 
 #define YY_DECL extern "C" int yylex()
+
+void op(string TokenClass, string TokenType) {
+    cout << yytext << " " << TokenClass << " " << TokenType << " " << curSourceLine << " " << curFile << " " << curLine << endl;
+}
+
+string strUp(string str) {
+    std::transform(str.begin(), str.end(), str.begin(), std::ptr_fun<int, int>(std::toupper));
+    return str;
+}
+
 %}
 %%
 
 [ \t]                                           ;
 \n                                              {curLine+=1;
                                                  curSourceLine+=1;}
-L?\"([^\\\"\n]|{ESCAPE_SEQ})*\"                 {cout << yytext << " StringLiteral " << "TTYPE " << curSourceLine << " " << curFile << " " << curLine << endl;}
-{KEYWORD}                                       {cout << yytext << " Keyword " << "TTYPE " << curSourceLine << " " << curFile << " " << curLine << endl;}
+L?\"([^\\\"\n]|{ESCAPE_SEQ})*\"                 {op("String","tSTRINGLIT");}
+{KEYWORD}                                       {op("Keyword",string("t")+strUp(string(yytext)));}
 {OPERATOR}                                      {cout << yytext << " Operator " << "TTYPE " << curSourceLine << " " << curFile << " " << curLine << endl;}
-{NONDIGIT}({DIGIT}|{NONDIGIT})*                 {cout << yytext << " Identifier " << "TTYPE " << curSourceLine << " " << curFile << " " << curLine << endl;}
-({INTEGER_CONST}|{CHAR_CONST}|{FLOAT_CONST})    {cout << yytext << " Constant " << "TTYPE " << curSourceLine << " " << curFile << " " << curLine << endl;}
-.|\n                                            {cout << yytext << " Invalid " << "TTYPE " << curSourceLine << " " << curFile << " " << curLine << endl;}
+{NONDIGIT}({DIGIT}|{NONDIGIT})*                 {op("Identifier","tIDENTIFIER");}
+{INTEGER_CONST}                                 {op("Constant","tINTEGER");}
+{FLOAT_CONST}                                   {op("Constant","tFLOAT");}
+{CHAR_CONST}                                    {op("Constant","tCHAR");}
+.|\n                                            {op("Invalid","tINVALID");}
 \#\ [0-9]+\ \"([^\"\n])+\"(\ [1-4])*            {stringstream sstr(yytext+2);
                                                  sstr >> curLine;
                                                  curLine-=1;
