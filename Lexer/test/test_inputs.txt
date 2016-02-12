@@ -1,0 +1,52 @@
+.0075e2
+0.075e1
+.075e1
+75e-2
+15.75
+1.575E1L
+1575e-2l
+-2.5e-3
+25E-4F
+10.
+.7f	
+10.7
+3.E+2
+19.e-3l
+
+"hello world"
+"hello \n world"
+"\"\""
+"\"\12"
+
+[ ] ( ) . ->
+
+++ -- & * + - ~ ! sizeof
+
+/ % << >> < > <= >= == != ^ | && || ? :
+
+= *= /= %= += -= <<= >>= &= ^= |= ,
+
+[ ] ( ) { } * , : = ; ...
+
+auto double int struct
+
+break else long switch
+
+case enum register typedef
+
+char extern return union
+
+const float short unsigned
+
+continue for signed void
+
+default goto sizeof volatile
+
+do if static while
+
+
+25
+.
+25E
+E25
+12.3fl
