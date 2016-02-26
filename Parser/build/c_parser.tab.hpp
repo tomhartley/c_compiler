@@ -34,7 +34,7 @@
 # define YY_YY_BUILD_C_PARSER_TAB_HPP_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
-# define YYDEBUG 1
+# define YYDEBUG 0
 #endif
 #if YYDEBUG
 extern int yydebug;
@@ -49,7 +49,7 @@ extern int yydebug;
   
   #include "../src/c_ast.hpp"
   #include "../src/c_tokens.hpp"
-  //extern Value *g_ast; // A way of getting the AST out
+  extern Value *g_ast; // A way of getting the AST out
   
   //! This is to fix problems when generating C++
 
@@ -159,8 +159,9 @@ union YYSTYPE
   int keyword;
   char* identifier;
   int theoperator;
+  string* amazing;
 
-#line 164 "build/c_parser.tab.hpp" /* yacc.c:1915  */
+#line 165 "build/c_parser.tab.hpp" /* yacc.c:1915  */
 };
 
 typedef union YYSTYPE YYSTYPE;
