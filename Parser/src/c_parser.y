@@ -1,15 +1,15 @@
 %{
   #include <stdio.h>
   
-  #include "src/c_ast.hpp"
-  #include "src/c_tokens.hpp"
-  
+  #include "../src/c_ast.hpp"
+  #include "../src/c_tokens.hpp"
   //extern Value *g_ast; // A way of getting the AST out
   
   //! This is to fix problems when generating C++
   int yylex(void);
   void yyerror(const char *);
-}%
+
+%}
 
 %union{
   RawInteger *intConst;
@@ -27,7 +27,7 @@
 %type <identifier> tIdentifier
 
 %type <operator> tSizeof tAssignLeftShift tAssignRightShift tEllipsis tAssignAND tAssignXOR tAssignOR tAssignMultiply tAssignDivide tAssignModulo tAssignAdd tAssignSubtract tShiftLeft tShiftRight tLessThanEquals tGreaterThanEquals tEquality tNotEquality tBooleanAND tBooleanOR tArrow tIncrement tDecrement tScopeBegin tLessThan tGreaterThan tScopeEnd tSemicolon tComma tLeftTernary tRightTernary tAssignment tBitwiseOR tHat tLeftSquareBracket tRightSquareBracket tLeftBracket tRightBracket tDot tBitwiseAND tMultiply tAdd tSubtract tTilde tNot tDivide tModulo
-    
+
 %start AMAZING
 
 %{
@@ -38,4 +38,11 @@ struct pair_t *root=0;
 
 AMAZING : tLeftBracket tComma tRightBracket         {cout << "Matched!";};
         | tDot tDot                                 {cout << "Lol";}
+
+
 %%
+
+
+int main (){
+    cout << "hi";
+}

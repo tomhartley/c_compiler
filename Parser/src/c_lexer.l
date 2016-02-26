@@ -22,7 +22,8 @@ FLOAT_CONST             ({FRAC_CONST}{EXP_PART}?[flFL]?|{DIGIT}+{EXP_PART}[flFL]
 #include <sstream>
 #include <string>
 #include <algorithm>
-#include "c_parser.tab.hpp"
+#include "../src/c_tokens.hpp"
+#include "../build/c_parser.tab.hpp"
 
 using namespace std;
 string curFile="";

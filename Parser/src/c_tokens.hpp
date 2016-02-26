@@ -1,4 +1,9 @@
+#ifndef c_tokens_hpp
+#define c_tokens_hpp
+
 #include <string>
+
+using namespace std;
 
 class RawToken {
 public:
@@ -25,4 +30,6 @@ public:
 class RawIdentifier : RawToken {
 public:
     string idenStr;
-}
+};
+
+#endif
