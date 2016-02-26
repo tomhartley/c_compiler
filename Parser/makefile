@@ -1,7 +1,7 @@
 CPPFLAGS += -W -Wall -g -ll
 
-bin/c_parser : src/c_compiler.cpp build/c_lexer.yy.cpp build/c_parser.tab.cpp build/c_parser.tab.hpp
-	g++ $(CPPFLAGS) src/c_compiler.cpp  build/c_lexer.yy.cpp build/c_parser.tab.cpp  -o bin/c_parser
+bin/c_parser : build/c_lexer.yy.cpp build/c_parser.tab.cpp build/c_parser.tab.hpp src/c_compiler.cpp
+	g++ $(CPPFLAGS) build/c_lexer.yy.cpp build/c_parser.tab.cpp src/c_compiler.cpp -o bin/c_parser
 
 build/c_parser.tab.cpp build/c_parser.tab.hpp : src/c_parser.y
 	bison -d src/c_parser.y -o build/c_parser.tab.cpp
