@@ -43,7 +43,9 @@ extern int yydebug;
 #line 1 "src/c_parser.y" /* yacc.c:1915  */
 
   #include <stdio.h>
-  
+  #include <vector>
+  #include <string>
+  #include <sstream>
   extern "C" int yylex(void);
   void yyerror(const char *);
   
@@ -51,10 +53,9 @@ extern int yydebug;
   #include "../src/c_tokens.hpp"
   extern Value *g_ast; // A way of getting the AST out
   
-  //! This is to fix problems when generating C++
+  //! This is to fix problems when generating C++  
 
-
-#line 58 "build/c_parser.tab.hpp" /* yacc.c:1915  */
+#line 59 "build/c_parser.tab.hpp" /* yacc.c:1915  */
 
 /* Token type.  */
 #ifndef YYTOKENTYPE
@@ -153,7 +154,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 15 "src/c_parser.y" /* yacc.c:1915  */
+#line 16 "src/c_parser.y" /* yacc.c:1915  */
 
   int intConst;
   int keyword;
@@ -161,7 +162,7 @@ union YYSTYPE
   int theoperator;
   string* amazing;
 
-#line 165 "build/c_parser.tab.hpp" /* yacc.c:1915  */
+#line 166 "build/c_parser.tab.hpp" /* yacc.c:1915  */
 };
 
 typedef union YYSTYPE YYSTYPE;

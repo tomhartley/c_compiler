@@ -1,0 +1,2786 @@
+Nonterminals useless in grammar
+
+   NON_SEMI
+   M_NON_SEMI
+
+
+Rules useless in grammar
+
+  118 NON_SEMI: tScopeBegin
+  119         | NON_MAINS
+
+  120 M_NON_SEMI: NON_SEMI
+  121           | M_NON_SEMI NON_SEMI
+
+
+State 108 conflicts: 1 shift/reduce
+State 109 conflicts: 1 shift/reduce
+State 110 conflicts: 1 shift/reduce
+State 111 conflicts: 1 shift/reduce
+State 121 conflicts: 1 shift/reduce
+State 142 conflicts: 82 reduce/reduce
+State 145 conflicts: 81 reduce/reduce
+
+
+Grammar
+
+    0 $accept: PROGRAM $end
+
+    1 NON_MAINS: tAuto
+    2          | tDouble
+    3          | tInt
+    4          | tStruct
+    5          | tBreak
+    6          | tElse
+    7          | tLong
+    8          | tSwitch
+    9          | tCase
+   10          | tEnum
+   11          | tRegister
+   12          | tTypedef
+   13          | tChar
+   14          | tExtern
+   15          | tReturn
+   16          | tUnion
+   17          | tConst
+   18          | tFloat
+   19          | tShort
+   20          | tUnsigned
+   21          | tContinue
+   22          | tFor
+   23          | tSigned
+   24          | tVoid
+   25          | tDefault
+   26          | tGoto
+   27          | tVolatile
+   28          | tDo
+   29          | tIf
+   30          | tStatic
+   31          | tWhile
+   32          | tSizeof
+   33          | tAssignLeftShift
+   34          | tAssignRightShift
+   35          | tEllipsis
+   36          | tAssignAND
+   37          | tAssignXOR
+   38          | tAssignOR
+   39          | tAssignMultiply
+   40          | tAssignDivide
+   41          | tAssignModulo
+   42          | tAssignAdd
+   43          | tAssignSubtract
+   44          | tShiftLeft
+   45          | tShiftRight
+   46          | tLessThanEquals
+   47          | tGreaterThanEquals
+   48          | tEquality
+   49          | tNotEquality
+   50          | tBooleanAND
+   51          | tBooleanOR
+   52          | tArrow
+   53          | tIncrement
+   54          | tDecrement
+   55          | tLessThan
+   56          | tGreaterThan
+   57          | tComma
+   58          | tLeftTernary
+   59          | tRightTernary
+   60          | tAssignment
+   61          | tBitwiseOR
+   62          | tHat
+   63          | tLeftSquareBracket
+   64          | tRightSquareBracket
+   65          | tLeftBracket
+   66          | tRightBracket
+   67          | tDot
+   68          | tBitwiseAND
+   69          | tMultiply
+   70          | tAdd
+   71          | tSubtract
+   72          | tTilde
+   73          | tNot
+   74          | tDivide
+   75          | tModulo
+   76          | tStringLit
+   77          | tIdentifier
+   78          | tIntegerConst
+   79          | tFloatConst
+   80          | tCharConst
+   81          | tInvalid
+
+   82 NON_SCOPE: tSemicolon
+   83          | NON_MAINS
+
+   84 M_NON_SCOPE: NON_SCOPE
+   85            | M_NON_SCOPE NON_SCOPE
+
+   86 M_NON_MAINS: NON_MAINS
+   87            | M_NON_MAINS NON_MAINS
+
+   88 STATEMENT: ELIF
+   89          | IF
+   90          | WHILE
+   91          | FOR
+   92          | DECLARE_ST
+   93          | BORING_STATEMENT
+   94          | COMPOUND_STATEMENT
+
+   95 IDEN_LIST: tIdentifier
+   96          | IDEN_LIST tComma tIdentifier
+
+   97 DECLARE_ST: tInt IDEN_LIST tSemicolon
+   98           | tInt IDEN_LIST tAssignment M_NON_MAINS tSemicolon
+
+   99 M_STATEMENTS: STATEMENT
+  100             | M_STATEMENTS STATEMENT
+
+  101 BORING_STATEMENT: M_NON_MAINS tSemicolon
+
+  102 COMPOUND_STATEMENT: tScopeBegin tScopeEnd
+  103                   | tScopeBegin M_STATEMENTS tScopeEnd
+
+  104 PARAM_LIST: tLeftBracket tRightBracket
+  105           | tLeftBracket INNER_LIST tRightBracket
+
+  106 INNER_LIST: tInt tIdentifier
+  107           | INNER_LIST tComma tInt tIdentifier
+
+  108 FUNCTION: tInt tIdentifier PARAM_LIST COMPOUND_STATEMENT
+
+  109 WHILE: tWhile tLeftBracket M_NON_MAINS STATEMENT
+
+  110 FOR: tFor tLeftBracket M_NON_SCOPE STATEMENT
+
+  111 IF: tIf tLeftBracket M_NON_MAINS STATEMENT
+
+  112 ELIF: IF tElse STATEMENT
+
+  113 ELEMENTS: FUNCTION
+  114         | DECLARE_ST
+  115         | ELEMENTS FUNCTION
+  116         | ELEMENTS DECLARE_ST
+
+  117 PROGRAM: ELEMENTS
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+tAuto (258) 1
+tDouble (259) 2
+tInt (260) 3 97 98 106 107 108
+tStruct (261) 4
+tBreak (262) 5
+tElse (263) 6 112
+tLong (264) 7
+tSwitch (265) 8
+tCase (266) 9
+tEnum (267) 10
+tRegister (268) 11
+tTypedef (269) 12
+tChar (270) 13
+tExtern (271) 14
+tReturn (272) 15
+tUnion (273) 16
+tConst (274) 17
+tFloat (275) 18
+tShort (276) 19
+tUnsigned (277) 20
+tContinue (278) 21
+tFor (279) 22 110
+tSigned (280) 23
+tVoid (281) 24
+tDefault (282) 25
+tGoto (283) 26
+tVolatile (284) 27
+tDo (285) 28
+tIf (286) 29 111
+tStatic (287) 30
+tWhile (288) 31 109
+tSizeof (289) 32
+tAssignLeftShift (290) 33
+tAssignRightShift (291) 34
+tEllipsis (292) 35
+tAssignAND (293) 36
+tAssignXOR (294) 37
+tAssignOR (295) 38
+tAssignMultiply (296) 39
+tAssignDivide (297) 40
+tAssignModulo (298) 41
+tAssignAdd (299) 42
+tAssignSubtract (300) 43
+tShiftLeft (301) 44
+tShiftRight (302) 45
+tLessThanEquals (303) 46
+tGreaterThanEquals (304) 47
+tEquality (305) 48
+tNotEquality (306) 49
+tBooleanAND (307) 50
+tBooleanOR (308) 51
+tArrow (309) 52
+tIncrement (310) 53
+tDecrement (311) 54
+tScopeBegin (312) 102 103
+tLessThan (313) 55
+tGreaterThan (314) 56
+tScopeEnd (315) 102 103
+tSemicolon (316) 82 97 98 101
+tComma (317) 57 96 107
+tLeftTernary (318) 58
+tRightTernary (319) 59
+tAssignment (320) 60 98
+tBitwiseOR (321) 61
+tHat (322) 62
+tLeftSquareBracket (323) 63
+tRightSquareBracket (324) 64
+tLeftBracket (325) 65 104 105 109 110 111
+tRightBracket (326) 66 104 105
+tDot (327) 67
+tBitwiseAND (328) 68
+tMultiply (329) 69
+tAdd (330) 70
+tSubtract (331) 71
+tTilde (332) 72
+tNot (333) 73
+tDivide (334) 74
+tModulo (335) 75
+tStringLit (336) 76
+tIdentifier (337) 77 95 96 106 107 108
+tIntegerConst (338) 78
+tFloatConst (339) 79
+tCharConst (340) 80
+tInvalid (341) 81
+
+
+Nonterminals, with rules where they appear
+
+$accept (87)
+    on left: 0
+NON_MAINS (88)
+    on left: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21
+    22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42
+    43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63
+    64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81, on right:
+    83 86 87
+NON_SCOPE (89)
+    on left: 82 83, on right: 84 85
+M_NON_SCOPE (90)
+    on left: 84 85, on right: 85 110
+M_NON_MAINS (91)
+    on left: 86 87, on right: 87 98 101 109 111
+STATEMENT (92)
+    on left: 88 89 90 91 92 93 94, on right: 99 100 109 110 111 112
+IDEN_LIST (93)
+    on left: 95 96, on right: 96 97 98
+DECLARE_ST (94)
+    on left: 97 98, on right: 92 114 116
+M_STATEMENTS (95)
+    on left: 99 100, on right: 100 103
+BORING_STATEMENT (96)
+    on left: 101, on right: 93
+COMPOUND_STATEMENT (97)
+    on left: 102 103, on right: 94 108
+PARAM_LIST (98)
+    on left: 104 105, on right: 108
+INNER_LIST (99)
+    on left: 106 107, on right: 105 107
+FUNCTION (100)
+    on left: 108, on right: 113 115
+WHILE (101)
+    on left: 109, on right: 90
+FOR (102)
+    on left: 110, on right: 91
+IF (103)
+    on left: 111, on right: 89 112
+ELIF (104)
+    on left: 112, on right: 88
+ELEMENTS (105)
+    on left: 113 114 115 116, on right: 115 116 117
+PROGRAM (106)
+    on left: 117, on right: 0
+
+
+State 0
+
+    0 $accept: . PROGRAM $end
+
+    tInt  shift, and go to state 1
+
+    DECLARE_ST  go to state 2
+    FUNCTION    go to state 3
+    ELEMENTS    go to state 4
+    PROGRAM     go to state 5
+
+
+State 1
+
+   97 DECLARE_ST: tInt . IDEN_LIST tSemicolon
+   98           | tInt . IDEN_LIST tAssignment M_NON_MAINS tSemicolon
+  108 FUNCTION: tInt . tIdentifier PARAM_LIST COMPOUND_STATEMENT
+
+    tIdentifier  shift, and go to state 6
+
+    IDEN_LIST  go to state 7
+
+
+State 2
+
+  114 ELEMENTS: DECLARE_ST .
+
+    $default  reduce using rule 114 (ELEMENTS)
+
+
+State 3
+
+  113 ELEMENTS: FUNCTION .
+
+    $default  reduce using rule 113 (ELEMENTS)
+
+
+State 4
+
+  115 ELEMENTS: ELEMENTS . FUNCTION
+  116         | ELEMENTS . DECLARE_ST
+  117 PROGRAM: ELEMENTS .
+
+    tInt  shift, and go to state 1
+
+    $default  reduce using rule 117 (PROGRAM)
+
+    DECLARE_ST  go to state 8
+    FUNCTION    go to state 9
+
+
+State 5
+
+    0 $accept: PROGRAM . $end
+
+    $end  shift, and go to state 10
+
+
+State 6
+
+   95 IDEN_LIST: tIdentifier .
+  108 FUNCTION: tInt tIdentifier . PARAM_LIST COMPOUND_STATEMENT
+
+    tLeftBracket  shift, and go to state 11
+
+    $default  reduce using rule 95 (IDEN_LIST)
+
+    PARAM_LIST  go to state 12
+
+
+State 7
+
+   96 IDEN_LIST: IDEN_LIST . tComma tIdentifier
+   97 DECLARE_ST: tInt IDEN_LIST . tSemicolon
+   98           | tInt IDEN_LIST . tAssignment M_NON_MAINS tSemicolon
+
+    tSemicolon   shift, and go to state 13
+    tComma       shift, and go to state 14
+    tAssignment  shift, and go to state 15
+
+
+State 8
+
+  116 ELEMENTS: ELEMENTS DECLARE_ST .
+
+    $default  reduce using rule 116 (ELEMENTS)
+
+
+State 9
+
+  115 ELEMENTS: ELEMENTS FUNCTION .
+
+    $default  reduce using rule 115 (ELEMENTS)
+
+
+State 10
+
+    0 $accept: PROGRAM $end .
+
+    $default  accept
+
+
+State 11
+
+  104 PARAM_LIST: tLeftBracket . tRightBracket
+  105           | tLeftBracket . INNER_LIST tRightBracket
+
+    tInt           shift, and go to state 16
+    tRightBracket  shift, and go to state 17
+
+    INNER_LIST  go to state 18
+
+
+State 12
+
+  108 FUNCTION: tInt tIdentifier PARAM_LIST . COMPOUND_STATEMENT
+
+    tScopeBegin  shift, and go to state 19
+
+    COMPOUND_STATEMENT  go to state 20
+
+
+State 13
+
+   97 DECLARE_ST: tInt IDEN_LIST tSemicolon .
+
+    $default  reduce using rule 97 (DECLARE_ST)
+
+
+State 14
+
+   96 IDEN_LIST: IDEN_LIST tComma . tIdentifier
+
+    tIdentifier  shift, and go to state 21
+
+
+State 15
+
+   98 DECLARE_ST: tInt IDEN_LIST tAssignment . M_NON_MAINS tSemicolon
+
+    tAuto                shift, and go to state 22
+    tDouble              shift, and go to state 23
+    tInt                 shift, and go to state 24
+    tStruct              shift, and go to state 25
+    tBreak               shift, and go to state 26
+    tElse                shift, and go to state 27
+    tLong                shift, and go to state 28
+    tSwitch              shift, and go to state 29
+    tCase                shift, and go to state 30
+    tEnum                shift, and go to state 31
+    tRegister            shift, and go to state 32
+    tTypedef             shift, and go to state 33
+    tChar                shift, and go to state 34
+    tExtern              shift, and go to state 35
+    tReturn              shift, and go to state 36
+    tUnion               shift, and go to state 37
+    tConst               shift, and go to state 38
+    tFloat               shift, and go to state 39
+    tShort               shift, and go to state 40
+    tUnsigned            shift, and go to state 41
+    tContinue            shift, and go to state 42
+    tFor                 shift, and go to state 43
+    tSigned              shift, and go to state 44
+    tVoid                shift, and go to state 45
+    tDefault             shift, and go to state 46
+    tGoto                shift, and go to state 47
+    tVolatile            shift, and go to state 48
+    tDo                  shift, and go to state 49
+    tIf                  shift, and go to state 50
+    tStatic              shift, and go to state 51
+    tWhile               shift, and go to state 52
+    tSizeof              shift, and go to state 53
+    tAssignLeftShift     shift, and go to state 54
+    tAssignRightShift    shift, and go to state 55
+    tEllipsis            shift, and go to state 56
+    tAssignAND           shift, and go to state 57
+    tAssignXOR           shift, and go to state 58
+    tAssignOR            shift, and go to state 59
+    tAssignMultiply      shift, and go to state 60
+    tAssignDivide        shift, and go to state 61
+    tAssignModulo        shift, and go to state 62
+    tAssignAdd           shift, and go to state 63
+    tAssignSubtract      shift, and go to state 64
+    tShiftLeft           shift, and go to state 65
+    tShiftRight          shift, and go to state 66
+    tLessThanEquals      shift, and go to state 67
+    tGreaterThanEquals   shift, and go to state 68
+    tEquality            shift, and go to state 69
+    tNotEquality         shift, and go to state 70
+    tBooleanAND          shift, and go to state 71
+    tBooleanOR           shift, and go to state 72
+    tArrow               shift, and go to state 73
+    tIncrement           shift, and go to state 74
+    tDecrement           shift, and go to state 75
+    tLessThan            shift, and go to state 76
+    tGreaterThan         shift, and go to state 77
+    tComma               shift, and go to state 78
+    tLeftTernary         shift, and go to state 79
+    tRightTernary        shift, and go to state 80
+    tAssignment          shift, and go to state 81
+    tBitwiseOR           shift, and go to state 82
+    tHat                 shift, and go to state 83
+    tLeftSquareBracket   shift, and go to state 84
+    tRightSquareBracket  shift, and go to state 85
+    tLeftBracket         shift, and go to state 86
+    tRightBracket        shift, and go to state 87
+    tDot                 shift, and go to state 88
+    tBitwiseAND          shift, and go to state 89
+    tMultiply            shift, and go to state 90
+    tAdd                 shift, and go to state 91
+    tSubtract            shift, and go to state 92
+    tTilde               shift, and go to state 93
+    tNot                 shift, and go to state 94
+    tDivide              shift, and go to state 95
+    tModulo              shift, and go to state 96
+    tStringLit           shift, and go to state 97
+    tIdentifier          shift, and go to state 98
+    tIntegerConst        shift, and go to state 99
+    tFloatConst          shift, and go to state 100
+    tCharConst           shift, and go to state 101
+    tInvalid             shift, and go to state 102
+
+    NON_MAINS    go to state 103
+    M_NON_MAINS  go to state 104
+
+
+State 16
+
+  106 INNER_LIST: tInt . tIdentifier
+
+    tIdentifier  shift, and go to state 105
+
+
+State 17
+
+  104 PARAM_LIST: tLeftBracket tRightBracket .
+
+    $default  reduce using rule 104 (PARAM_LIST)
+
+
+State 18
+
+  105 PARAM_LIST: tLeftBracket INNER_LIST . tRightBracket
+  107 INNER_LIST: INNER_LIST . tComma tInt tIdentifier
+
+    tComma         shift, and go to state 106
+    tRightBracket  shift, and go to state 107
+
+
+State 19
+
+  102 COMPOUND_STATEMENT: tScopeBegin . tScopeEnd
+  103                   | tScopeBegin . M_STATEMENTS tScopeEnd
+
+    tAuto                shift, and go to state 22
+    tDouble              shift, and go to state 23
+    tInt                 shift, and go to state 108
+    tStruct              shift, and go to state 25
+    tBreak               shift, and go to state 26
+    tElse                shift, and go to state 27
+    tLong                shift, and go to state 28
+    tSwitch              shift, and go to state 29
+    tCase                shift, and go to state 30
+    tEnum                shift, and go to state 31
+    tRegister            shift, and go to state 32
+    tTypedef             shift, and go to state 33
+    tChar                shift, and go to state 34
+    tExtern              shift, and go to state 35
+    tReturn              shift, and go to state 36
+    tUnion               shift, and go to state 37
+    tConst               shift, and go to state 38
+    tFloat               shift, and go to state 39
+    tShort               shift, and go to state 40
+    tUnsigned            shift, and go to state 41
+    tContinue            shift, and go to state 42
+    tFor                 shift, and go to state 109
+    tSigned              shift, and go to state 44
+    tVoid                shift, and go to state 45
+    tDefault             shift, and go to state 46
+    tGoto                shift, and go to state 47
+    tVolatile            shift, and go to state 48
+    tDo                  shift, and go to state 49
+    tIf                  shift, and go to state 110
+    tStatic              shift, and go to state 51
+    tWhile               shift, and go to state 111
+    tSizeof              shift, and go to state 53
+    tAssignLeftShift     shift, and go to state 54
+    tAssignRightShift    shift, and go to state 55
+    tEllipsis            shift, and go to state 56
+    tAssignAND           shift, and go to state 57
+    tAssignXOR           shift, and go to state 58
+    tAssignOR            shift, and go to state 59
+    tAssignMultiply      shift, and go to state 60
+    tAssignDivide        shift, and go to state 61
+    tAssignModulo        shift, and go to state 62
+    tAssignAdd           shift, and go to state 63
+    tAssignSubtract      shift, and go to state 64
+    tShiftLeft           shift, and go to state 65
+    tShiftRight          shift, and go to state 66
+    tLessThanEquals      shift, and go to state 67
+    tGreaterThanEquals   shift, and go to state 68
+    tEquality            shift, and go to state 69
+    tNotEquality         shift, and go to state 70
+    tBooleanAND          shift, and go to state 71
+    tBooleanOR           shift, and go to state 72
+    tArrow               shift, and go to state 73
+    tIncrement           shift, and go to state 74
+    tDecrement           shift, and go to state 75
+    tScopeBegin          shift, and go to state 19
+    tLessThan            shift, and go to state 76
+    tGreaterThan         shift, and go to state 77
+    tScopeEnd            shift, and go to state 112
+    tComma               shift, and go to state 78
+    tLeftTernary         shift, and go to state 79
+    tRightTernary        shift, and go to state 80
+    tAssignment          shift, and go to state 81
+    tBitwiseOR           shift, and go to state 82
+    tHat                 shift, and go to state 83
+    tLeftSquareBracket   shift, and go to state 84
+    tRightSquareBracket  shift, and go to state 85
+    tLeftBracket         shift, and go to state 86
+    tRightBracket        shift, and go to state 87
+    tDot                 shift, and go to state 88
+    tBitwiseAND          shift, and go to state 89
+    tMultiply            shift, and go to state 90
+    tAdd                 shift, and go to state 91
+    tSubtract            shift, and go to state 92
+    tTilde               shift, and go to state 93
+    tNot                 shift, and go to state 94
+    tDivide              shift, and go to state 95
+    tModulo              shift, and go to state 96
+    tStringLit           shift, and go to state 97
+    tIdentifier          shift, and go to state 98
+    tIntegerConst        shift, and go to state 99
+    tFloatConst          shift, and go to state 100
+    tCharConst           shift, and go to state 101
+    tInvalid             shift, and go to state 102
+
+    NON_MAINS           go to state 103
+    M_NON_MAINS         go to state 113
+    STATEMENT           go to state 114
+    DECLARE_ST          go to state 115
+    M_STATEMENTS        go to state 116
+    BORING_STATEMENT    go to state 117
+    COMPOUND_STATEMENT  go to state 118
+    WHILE               go to state 119
+    FOR                 go to state 120
+    IF                  go to state 121
+    ELIF                go to state 122
+
+
+State 20
+
+  108 FUNCTION: tInt tIdentifier PARAM_LIST COMPOUND_STATEMENT .
+
+    $default  reduce using rule 108 (FUNCTION)
+
+
+State 21
+
+   96 IDEN_LIST: IDEN_LIST tComma tIdentifier .
+
+    $default  reduce using rule 96 (IDEN_LIST)
+
+
+State 22
+
+    1 NON_MAINS: tAuto .
+
+    $default  reduce using rule 1 (NON_MAINS)
+
+
+State 23
+
+    2 NON_MAINS: tDouble .
+
+    $default  reduce using rule 2 (NON_MAINS)
+
+
+State 24
+
+    3 NON_MAINS: tInt .
+
+    $default  reduce using rule 3 (NON_MAINS)
+
+
+State 25
+
+    4 NON_MAINS: tStruct .
+
+    $default  reduce using rule 4 (NON_MAINS)
+
+
+State 26
+
+    5 NON_MAINS: tBreak .
+
+    $default  reduce using rule 5 (NON_MAINS)
+
+
+State 27
+
+    6 NON_MAINS: tElse .
+
+    $default  reduce using rule 6 (NON_MAINS)
+
+
+State 28
+
+    7 NON_MAINS: tLong .
+
+    $default  reduce using rule 7 (NON_MAINS)
+
+
+State 29
+
+    8 NON_MAINS: tSwitch .
+
+    $default  reduce using rule 8 (NON_MAINS)
+
+
+State 30
+
+    9 NON_MAINS: tCase .
+
+    $default  reduce using rule 9 (NON_MAINS)
+
+
+State 31
+
+   10 NON_MAINS: tEnum .
+
+    $default  reduce using rule 10 (NON_MAINS)
+
+
+State 32
+
+   11 NON_MAINS: tRegister .
+
+    $default  reduce using rule 11 (NON_MAINS)
+
+
+State 33
+
+   12 NON_MAINS: tTypedef .
+
+    $default  reduce using rule 12 (NON_MAINS)
+
+
+State 34
+
+   13 NON_MAINS: tChar .
+
+    $default  reduce using rule 13 (NON_MAINS)
+
+
+State 35
+
+   14 NON_MAINS: tExtern .
+
+    $default  reduce using rule 14 (NON_MAINS)
+
+
+State 36
+
+   15 NON_MAINS: tReturn .
+
+    $default  reduce using rule 15 (NON_MAINS)
+
+
+State 37
+
+   16 NON_MAINS: tUnion .
+
+    $default  reduce using rule 16 (NON_MAINS)
+
+
+State 38
+
+   17 NON_MAINS: tConst .
+
+    $default  reduce using rule 17 (NON_MAINS)
+
+
+State 39
+
+   18 NON_MAINS: tFloat .
+
+    $default  reduce using rule 18 (NON_MAINS)
+
+
+State 40
+
+   19 NON_MAINS: tShort .
+
+    $default  reduce using rule 19 (NON_MAINS)
+
+
+State 41
+
+   20 NON_MAINS: tUnsigned .
+
+    $default  reduce using rule 20 (NON_MAINS)
+
+
+State 42
+
+   21 NON_MAINS: tContinue .
+
+    $default  reduce using rule 21 (NON_MAINS)
+
+
+State 43
+
+   22 NON_MAINS: tFor .
+
+    $default  reduce using rule 22 (NON_MAINS)
+
+
+State 44
+
+   23 NON_MAINS: tSigned .
+
+    $default  reduce using rule 23 (NON_MAINS)
+
+
+State 45
+
+   24 NON_MAINS: tVoid .
+
+    $default  reduce using rule 24 (NON_MAINS)
+
+
+State 46
+
+   25 NON_MAINS: tDefault .
+
+    $default  reduce using rule 25 (NON_MAINS)
+
+
+State 47
+
+   26 NON_MAINS: tGoto .
+
+    $default  reduce using rule 26 (NON_MAINS)
+
+
+State 48
+
+   27 NON_MAINS: tVolatile .
+
+    $default  reduce using rule 27 (NON_MAINS)
+
+
+State 49
+
+   28 NON_MAINS: tDo .
+
+    $default  reduce using rule 28 (NON_MAINS)
+
+
+State 50
+
+   29 NON_MAINS: tIf .
+
+    $default  reduce using rule 29 (NON_MAINS)
+
+
+State 51
+
+   30 NON_MAINS: tStatic .
+
+    $default  reduce using rule 30 (NON_MAINS)
+
+
+State 52
+
+   31 NON_MAINS: tWhile .
+
+    $default  reduce using rule 31 (NON_MAINS)
+
+
+State 53
+
+   32 NON_MAINS: tSizeof .
+
+    $default  reduce using rule 32 (NON_MAINS)
+
+
+State 54
+
+   33 NON_MAINS: tAssignLeftShift .
+
+    $default  reduce using rule 33 (NON_MAINS)
+
+
+State 55
+
+   34 NON_MAINS: tAssignRightShift .
+
+    $default  reduce using rule 34 (NON_MAINS)
+
+
+State 56
+
+   35 NON_MAINS: tEllipsis .
+
+    $default  reduce using rule 35 (NON_MAINS)
+
+
+State 57
+
+   36 NON_MAINS: tAssignAND .
+
+    $default  reduce using rule 36 (NON_MAINS)
+
+
+State 58
+
+   37 NON_MAINS: tAssignXOR .
+
+    $default  reduce using rule 37 (NON_MAINS)
+
+
+State 59
+
+   38 NON_MAINS: tAssignOR .
+
+    $default  reduce using rule 38 (NON_MAINS)
+
+
+State 60
+
+   39 NON_MAINS: tAssignMultiply .
+
+    $default  reduce using rule 39 (NON_MAINS)
+
+
+State 61
+
+   40 NON_MAINS: tAssignDivide .
+
+    $default  reduce using rule 40 (NON_MAINS)
+
+
+State 62
+
+   41 NON_MAINS: tAssignModulo .
+
+    $default  reduce using rule 41 (NON_MAINS)
+
+
+State 63
+
+   42 NON_MAINS: tAssignAdd .
+
+    $default  reduce using rule 42 (NON_MAINS)
+
+
+State 64
+
+   43 NON_MAINS: tAssignSubtract .
+
+    $default  reduce using rule 43 (NON_MAINS)
+
+
+State 65
+
+   44 NON_MAINS: tShiftLeft .
+
+    $default  reduce using rule 44 (NON_MAINS)
+
+
+State 66
+
+   45 NON_MAINS: tShiftRight .
+
+    $default  reduce using rule 45 (NON_MAINS)
+
+
+State 67
+
+   46 NON_MAINS: tLessThanEquals .
+
+    $default  reduce using rule 46 (NON_MAINS)
+
+
+State 68
+
+   47 NON_MAINS: tGreaterThanEquals .
+
+    $default  reduce using rule 47 (NON_MAINS)
+
+
+State 69
+
+   48 NON_MAINS: tEquality .
+
+    $default  reduce using rule 48 (NON_MAINS)
+
+
+State 70
+
+   49 NON_MAINS: tNotEquality .
+
+    $default  reduce using rule 49 (NON_MAINS)
+
+
+State 71
+
+   50 NON_MAINS: tBooleanAND .
+
+    $default  reduce using rule 50 (NON_MAINS)
+
+
+State 72
+
+   51 NON_MAINS: tBooleanOR .
+
+    $default  reduce using rule 51 (NON_MAINS)
+
+
+State 73
+
+   52 NON_MAINS: tArrow .
+
+    $default  reduce using rule 52 (NON_MAINS)
+
+
+State 74
+
+   53 NON_MAINS: tIncrement .
+
+    $default  reduce using rule 53 (NON_MAINS)
+
+
+State 75
+
+   54 NON_MAINS: tDecrement .
+
+    $default  reduce using rule 54 (NON_MAINS)
+
+
+State 76
+
+   55 NON_MAINS: tLessThan .
+
+    $default  reduce using rule 55 (NON_MAINS)
+
+
+State 77
+
+   56 NON_MAINS: tGreaterThan .
+
+    $default  reduce using rule 56 (NON_MAINS)
+
+
+State 78
+
+   57 NON_MAINS: tComma .
+
+    $default  reduce using rule 57 (NON_MAINS)
+
+
+State 79
+
+   58 NON_MAINS: tLeftTernary .
+
+    $default  reduce using rule 58 (NON_MAINS)
+
+
+State 80
+
+   59 NON_MAINS: tRightTernary .
+
+    $default  reduce using rule 59 (NON_MAINS)
+
+
+State 81
+
+   60 NON_MAINS: tAssignment .
+
+    $default  reduce using rule 60 (NON_MAINS)
+
+
+State 82
+
+   61 NON_MAINS: tBitwiseOR .
+
+    $default  reduce using rule 61 (NON_MAINS)
+
+
+State 83
+
+   62 NON_MAINS: tHat .
+
+    $default  reduce using rule 62 (NON_MAINS)
+
+
+State 84
+
+   63 NON_MAINS: tLeftSquareBracket .
+
+    $default  reduce using rule 63 (NON_MAINS)
+
+
+State 85
+
+   64 NON_MAINS: tRightSquareBracket .
+
+    $default  reduce using rule 64 (NON_MAINS)
+
+
+State 86
+
+   65 NON_MAINS: tLeftBracket .
+
+    $default  reduce using rule 65 (NON_MAINS)
+
+
+State 87
+
+   66 NON_MAINS: tRightBracket .
+
+    $default  reduce using rule 66 (NON_MAINS)
+
+
+State 88
+
+   67 NON_MAINS: tDot .
+
+    $default  reduce using rule 67 (NON_MAINS)
+
+
+State 89
+
+   68 NON_MAINS: tBitwiseAND .
+
+    $default  reduce using rule 68 (NON_MAINS)
+
+
+State 90
+
+   69 NON_MAINS: tMultiply .
+
+    $default  reduce using rule 69 (NON_MAINS)
+
+
+State 91
+
+   70 NON_MAINS: tAdd .
+
+    $default  reduce using rule 70 (NON_MAINS)
+
+
+State 92
+
+   71 NON_MAINS: tSubtract .
+
+    $default  reduce using rule 71 (NON_MAINS)
+
+
+State 93
+
+   72 NON_MAINS: tTilde .
+
+    $default  reduce using rule 72 (NON_MAINS)
+
+
+State 94
+
+   73 NON_MAINS: tNot .
+
+    $default  reduce using rule 73 (NON_MAINS)
+
+
+State 95
+
+   74 NON_MAINS: tDivide .
+
+    $default  reduce using rule 74 (NON_MAINS)
+
+
+State 96
+
+   75 NON_MAINS: tModulo .
+
+    $default  reduce using rule 75 (NON_MAINS)
+
+
+State 97
+
+   76 NON_MAINS: tStringLit .
+
+    $default  reduce using rule 76 (NON_MAINS)
+
+
+State 98
+
+   77 NON_MAINS: tIdentifier .
+
+    $default  reduce using rule 77 (NON_MAINS)
+
+
+State 99
+
+   78 NON_MAINS: tIntegerConst .
+
+    $default  reduce using rule 78 (NON_MAINS)
+
+
+State 100
+
+   79 NON_MAINS: tFloatConst .
+
+    $default  reduce using rule 79 (NON_MAINS)
+
+
+State 101
+
+   80 NON_MAINS: tCharConst .
+
+    $default  reduce using rule 80 (NON_MAINS)
+
+
+State 102
+
+   81 NON_MAINS: tInvalid .
+
+    $default  reduce using rule 81 (NON_MAINS)
+
+
+State 103
+
+   86 M_NON_MAINS: NON_MAINS .
+
+    $default  reduce using rule 86 (M_NON_MAINS)
+
+
+State 104
+
+   87 M_NON_MAINS: M_NON_MAINS . NON_MAINS
+   98 DECLARE_ST: tInt IDEN_LIST tAssignment M_NON_MAINS . tSemicolon
+
+    tAuto                shift, and go to state 22
+    tDouble              shift, and go to state 23
+    tInt                 shift, and go to state 24
+    tStruct              shift, and go to state 25
+    tBreak               shift, and go to state 26
+    tElse                shift, and go to state 27
+    tLong                shift, and go to state 28
+    tSwitch              shift, and go to state 29
+    tCase                shift, and go to state 30
+    tEnum                shift, and go to state 31
+    tRegister            shift, and go to state 32
+    tTypedef             shift, and go to state 33
+    tChar                shift, and go to state 34
+    tExtern              shift, and go to state 35
+    tReturn              shift, and go to state 36
+    tUnion               shift, and go to state 37
+    tConst               shift, and go to state 38
+    tFloat               shift, and go to state 39
+    tShort               shift, and go to state 40
+    tUnsigned            shift, and go to state 41
+    tContinue            shift, and go to state 42
+    tFor                 shift, and go to state 43
+    tSigned              shift, and go to state 44
+    tVoid                shift, and go to state 45
+    tDefault             shift, and go to state 46
+    tGoto                shift, and go to state 47
+    tVolatile            shift, and go to state 48
+    tDo                  shift, and go to state 49
+    tIf                  shift, and go to state 50
+    tStatic              shift, and go to state 51
+    tWhile               shift, and go to state 52
+    tSizeof              shift, and go to state 53
+    tAssignLeftShift     shift, and go to state 54
+    tAssignRightShift    shift, and go to state 55
+    tEllipsis            shift, and go to state 56
+    tAssignAND           shift, and go to state 57
+    tAssignXOR           shift, and go to state 58
+    tAssignOR            shift, and go to state 59
+    tAssignMultiply      shift, and go to state 60
+    tAssignDivide        shift, and go to state 61
+    tAssignModulo        shift, and go to state 62
+    tAssignAdd           shift, and go to state 63
+    tAssignSubtract      shift, and go to state 64
+    tShiftLeft           shift, and go to state 65
+    tShiftRight          shift, and go to state 66
+    tLessThanEquals      shift, and go to state 67
+    tGreaterThanEquals   shift, and go to state 68
+    tEquality            shift, and go to state 69
+    tNotEquality         shift, and go to state 70
+    tBooleanAND          shift, and go to state 71
+    tBooleanOR           shift, and go to state 72
+    tArrow               shift, and go to state 73
+    tIncrement           shift, and go to state 74
+    tDecrement           shift, and go to state 75
+    tLessThan            shift, and go to state 76
+    tGreaterThan         shift, and go to state 77
+    tSemicolon           shift, and go to state 123
+    tComma               shift, and go to state 78
+    tLeftTernary         shift, and go to state 79
+    tRightTernary        shift, and go to state 80
+    tAssignment          shift, and go to state 81
+    tBitwiseOR           shift, and go to state 82
+    tHat                 shift, and go to state 83
+    tLeftSquareBracket   shift, and go to state 84
+    tRightSquareBracket  shift, and go to state 85
+    tLeftBracket         shift, and go to state 86
+    tRightBracket        shift, and go to state 87
+    tDot                 shift, and go to state 88
+    tBitwiseAND          shift, and go to state 89
+    tMultiply            shift, and go to state 90
+    tAdd                 shift, and go to state 91
+    tSubtract            shift, and go to state 92
+    tTilde               shift, and go to state 93
+    tNot                 shift, and go to state 94
+    tDivide              shift, and go to state 95
+    tModulo              shift, and go to state 96
+    tStringLit           shift, and go to state 97
+    tIdentifier          shift, and go to state 98
+    tIntegerConst        shift, and go to state 99
+    tFloatConst          shift, and go to state 100
+    tCharConst           shift, and go to state 101
+    tInvalid             shift, and go to state 102
+
+    NON_MAINS  go to state 124
+
+
+State 105
+
+  106 INNER_LIST: tInt tIdentifier .
+
+    $default  reduce using rule 106 (INNER_LIST)
+
+
+State 106
+
+  107 INNER_LIST: INNER_LIST tComma . tInt tIdentifier
+
+    tInt  shift, and go to state 125
+
+
+State 107
+
+  105 PARAM_LIST: tLeftBracket INNER_LIST tRightBracket .
+
+    $default  reduce using rule 105 (PARAM_LIST)
+
+
+State 108
+
+    3 NON_MAINS: tInt .
+   97 DECLARE_ST: tInt . IDEN_LIST tSemicolon
+   98           | tInt . IDEN_LIST tAssignment M_NON_MAINS tSemicolon
+
+    tIdentifier  shift, and go to state 126
+
+    tIdentifier  [reduce using rule 3 (NON_MAINS)]
+    $default     reduce using rule 3 (NON_MAINS)
+
+    IDEN_LIST  go to state 7
+
+
+State 109
+
+   22 NON_MAINS: tFor .
+  110 FOR: tFor . tLeftBracket M_NON_SCOPE STATEMENT
+
+    tLeftBracket  shift, and go to state 127
+
+    tLeftBracket  [reduce using rule 22 (NON_MAINS)]
+    $default      reduce using rule 22 (NON_MAINS)
+
+
+State 110
+
+   29 NON_MAINS: tIf .
+  111 IF: tIf . tLeftBracket M_NON_MAINS STATEMENT
+
+    tLeftBracket  shift, and go to state 128
+
+    tLeftBracket  [reduce using rule 29 (NON_MAINS)]
+    $default      reduce using rule 29 (NON_MAINS)
+
+
+State 111
+
+   31 NON_MAINS: tWhile .
+  109 WHILE: tWhile . tLeftBracket M_NON_MAINS STATEMENT
+
+    tLeftBracket  shift, and go to state 129
+
+    tLeftBracket  [reduce using rule 31 (NON_MAINS)]
+    $default      reduce using rule 31 (NON_MAINS)
+
+
+State 112
+
+  102 COMPOUND_STATEMENT: tScopeBegin tScopeEnd .
+
+    $default  reduce using rule 102 (COMPOUND_STATEMENT)
+
+
+State 113
+
+   87 M_NON_MAINS: M_NON_MAINS . NON_MAINS
+  101 BORING_STATEMENT: M_NON_MAINS . tSemicolon
+
+    tAuto                shift, and go to state 22
+    tDouble              shift, and go to state 23
+    tInt                 shift, and go to state 24
+    tStruct              shift, and go to state 25
+    tBreak               shift, and go to state 26
+    tElse                shift, and go to state 27
+    tLong                shift, and go to state 28
+    tSwitch              shift, and go to state 29
+    tCase                shift, and go to state 30
+    tEnum                shift, and go to state 31
+    tRegister            shift, and go to state 32
+    tTypedef             shift, and go to state 33
+    tChar                shift, and go to state 34
+    tExtern              shift, and go to state 35
+    tReturn              shift, and go to state 36
+    tUnion               shift, and go to state 37
+    tConst               shift, and go to state 38
+    tFloat               shift, and go to state 39
+    tShort               shift, and go to state 40
+    tUnsigned            shift, and go to state 41
+    tContinue            shift, and go to state 42
+    tFor                 shift, and go to state 43
+    tSigned              shift, and go to state 44
+    tVoid                shift, and go to state 45
+    tDefault             shift, and go to state 46
+    tGoto                shift, and go to state 47
+    tVolatile            shift, and go to state 48
+    tDo                  shift, and go to state 49
+    tIf                  shift, and go to state 50
+    tStatic              shift, and go to state 51
+    tWhile               shift, and go to state 52
+    tSizeof              shift, and go to state 53
+    tAssignLeftShift     shift, and go to state 54
+    tAssignRightShift    shift, and go to state 55
+    tEllipsis            shift, and go to state 56
+    tAssignAND           shift, and go to state 57
+    tAssignXOR           shift, and go to state 58
+    tAssignOR            shift, and go to state 59
+    tAssignMultiply      shift, and go to state 60
+    tAssignDivide        shift, and go to state 61
+    tAssignModulo        shift, and go to state 62
+    tAssignAdd           shift, and go to state 63
+    tAssignSubtract      shift, and go to state 64
+    tShiftLeft           shift, and go to state 65
+    tShiftRight          shift, and go to state 66
+    tLessThanEquals      shift, and go to state 67
+    tGreaterThanEquals   shift, and go to state 68
+    tEquality            shift, and go to state 69
+    tNotEquality         shift, and go to state 70
+    tBooleanAND          shift, and go to state 71
+    tBooleanOR           shift, and go to state 72
+    tArrow               shift, and go to state 73
+    tIncrement           shift, and go to state 74
+    tDecrement           shift, and go to state 75
+    tLessThan            shift, and go to state 76
+    tGreaterThan         shift, and go to state 77
+    tSemicolon           shift, and go to state 130
+    tComma               shift, and go to state 78
+    tLeftTernary         shift, and go to state 79
+    tRightTernary        shift, and go to state 80
+    tAssignment          shift, and go to state 81
+    tBitwiseOR           shift, and go to state 82
+    tHat                 shift, and go to state 83
+    tLeftSquareBracket   shift, and go to state 84
+    tRightSquareBracket  shift, and go to state 85
+    tLeftBracket         shift, and go to state 86
+    tRightBracket        shift, and go to state 87
+    tDot                 shift, and go to state 88
+    tBitwiseAND          shift, and go to state 89
+    tMultiply            shift, and go to state 90
+    tAdd                 shift, and go to state 91
+    tSubtract            shift, and go to state 92
+    tTilde               shift, and go to state 93
+    tNot                 shift, and go to state 94
+    tDivide              shift, and go to state 95
+    tModulo              shift, and go to state 96
+    tStringLit           shift, and go to state 97
+    tIdentifier          shift, and go to state 98
+    tIntegerConst        shift, and go to state 99
+    tFloatConst          shift, and go to state 100
+    tCharConst           shift, and go to state 101
+    tInvalid             shift, and go to state 102
+
+    NON_MAINS  go to state 124
+
+
+State 114
+
+   99 M_STATEMENTS: STATEMENT .
+
+    $default  reduce using rule 99 (M_STATEMENTS)
+
+
+State 115
+
+   92 STATEMENT: DECLARE_ST .
+
+    $default  reduce using rule 92 (STATEMENT)
+
+
+State 116
+
+  100 M_STATEMENTS: M_STATEMENTS . STATEMENT
+  103 COMPOUND_STATEMENT: tScopeBegin M_STATEMENTS . tScopeEnd
+
+    tAuto                shift, and go to state 22
+    tDouble              shift, and go to state 23
+    tInt                 shift, and go to state 108
+    tStruct              shift, and go to state 25
+    tBreak               shift, and go to state 26
+    tElse                shift, and go to state 27
+    tLong                shift, and go to state 28
+    tSwitch              shift, and go to state 29
+    tCase                shift, and go to state 30
+    tEnum                shift, and go to state 31
+    tRegister            shift, and go to state 32
+    tTypedef             shift, and go to state 33
+    tChar                shift, and go to state 34
+    tExtern              shift, and go to state 35
+    tReturn              shift, and go to state 36
+    tUnion               shift, and go to state 37
+    tConst               shift, and go to state 38
+    tFloat               shift, and go to state 39
+    tShort               shift, and go to state 40
+    tUnsigned            shift, and go to state 41
+    tContinue            shift, and go to state 42
+    tFor                 shift, and go to state 109
+    tSigned              shift, and go to state 44
+    tVoid                shift, and go to state 45
+    tDefault             shift, and go to state 46
+    tGoto                shift, and go to state 47
+    tVolatile            shift, and go to state 48
+    tDo                  shift, and go to state 49
+    tIf                  shift, and go to state 110
+    tStatic              shift, and go to state 51
+    tWhile               shift, and go to state 111
+    tSizeof              shift, and go to state 53
+    tAssignLeftShift     shift, and go to state 54
+    tAssignRightShift    shift, and go to state 55
+    tEllipsis            shift, and go to state 56
+    tAssignAND           shift, and go to state 57
+    tAssignXOR           shift, and go to state 58
+    tAssignOR            shift, and go to state 59
+    tAssignMultiply      shift, and go to state 60
+    tAssignDivide        shift, and go to state 61
+    tAssignModulo        shift, and go to state 62
+    tAssignAdd           shift, and go to state 63
+    tAssignSubtract      shift, and go to state 64
+    tShiftLeft           shift, and go to state 65
+    tShiftRight          shift, and go to state 66
+    tLessThanEquals      shift, and go to state 67
+    tGreaterThanEquals   shift, and go to state 68
+    tEquality            shift, and go to state 69
+    tNotEquality         shift, and go to state 70
+    tBooleanAND          shift, and go to state 71
+    tBooleanOR           shift, and go to state 72
+    tArrow               shift, and go to state 73
+    tIncrement           shift, and go to state 74
+    tDecrement           shift, and go to state 75
+    tScopeBegin          shift, and go to state 19
+    tLessThan            shift, and go to state 76
+    tGreaterThan         shift, and go to state 77
+    tScopeEnd            shift, and go to state 131
+    tComma               shift, and go to state 78
+    tLeftTernary         shift, and go to state 79
+    tRightTernary        shift, and go to state 80
+    tAssignment          shift, and go to state 81
+    tBitwiseOR           shift, and go to state 82
+    tHat                 shift, and go to state 83
+    tLeftSquareBracket   shift, and go to state 84
+    tRightSquareBracket  shift, and go to state 85
+    tLeftBracket         shift, and go to state 86
+    tRightBracket        shift, and go to state 87
+    tDot                 shift, and go to state 88
+    tBitwiseAND          shift, and go to state 89
+    tMultiply            shift, and go to state 90
+    tAdd                 shift, and go to state 91
+    tSubtract            shift, and go to state 92
+    tTilde               shift, and go to state 93
+    tNot                 shift, and go to state 94
+    tDivide              shift, and go to state 95
+    tModulo              shift, and go to state 96
+    tStringLit           shift, and go to state 97
+    tIdentifier          shift, and go to state 98
+    tIntegerConst        shift, and go to state 99
+    tFloatConst          shift, and go to state 100
+    tCharConst           shift, and go to state 101
+    tInvalid             shift, and go to state 102
+
+    NON_MAINS           go to state 103
+    M_NON_MAINS         go to state 113
+    STATEMENT           go to state 132
+    DECLARE_ST          go to state 115
+    BORING_STATEMENT    go to state 117
+    COMPOUND_STATEMENT  go to state 118
+    WHILE               go to state 119
+    FOR                 go to state 120
+    IF                  go to state 121
+    ELIF                go to state 122
+
+
+State 117
+
+   93 STATEMENT: BORING_STATEMENT .
+
+    $default  reduce using rule 93 (STATEMENT)
+
+
+State 118
+
+   94 STATEMENT: COMPOUND_STATEMENT .
+
+    $default  reduce using rule 94 (STATEMENT)
+
+
+State 119
+
+   90 STATEMENT: WHILE .
+
+    $default  reduce using rule 90 (STATEMENT)
+
+
+State 120
+
+   91 STATEMENT: FOR .
+
+    $default  reduce using rule 91 (STATEMENT)
+
+
+State 121
+
+   89 STATEMENT: IF .
+  112 ELIF: IF . tElse STATEMENT
+
+    tElse  shift, and go to state 133
+
+    tElse     [reduce using rule 89 (STATEMENT)]
+    $default  reduce using rule 89 (STATEMENT)
+
+
+State 122
+
+   88 STATEMENT: ELIF .
+
+    $default  reduce using rule 88 (STATEMENT)
+
+
+State 123
+
+   98 DECLARE_ST: tInt IDEN_LIST tAssignment M_NON_MAINS tSemicolon .
+
+    $default  reduce using rule 98 (DECLARE_ST)
+
+
+State 124
+
+   87 M_NON_MAINS: M_NON_MAINS NON_MAINS .
+
+    $default  reduce using rule 87 (M_NON_MAINS)
+
+
+State 125
+
+  107 INNER_LIST: INNER_LIST tComma tInt . tIdentifier
+
+    tIdentifier  shift, and go to state 134
+
+
+State 126
+
+   95 IDEN_LIST: tIdentifier .
+
+    $default  reduce using rule 95 (IDEN_LIST)
+
+
+State 127
+
+  110 FOR: tFor tLeftBracket . M_NON_SCOPE STATEMENT
+
+    tAuto                shift, and go to state 22
+    tDouble              shift, and go to state 23
+    tInt                 shift, and go to state 24
+    tStruct              shift, and go to state 25
+    tBreak               shift, and go to state 26
+    tElse                shift, and go to state 27
+    tLong                shift, and go to state 28
+    tSwitch              shift, and go to state 29
+    tCase                shift, and go to state 30
+    tEnum                shift, and go to state 31
+    tRegister            shift, and go to state 32
+    tTypedef             shift, and go to state 33
+    tChar                shift, and go to state 34
+    tExtern              shift, and go to state 35
+    tReturn              shift, and go to state 36
+    tUnion               shift, and go to state 37
+    tConst               shift, and go to state 38
+    tFloat               shift, and go to state 39
+    tShort               shift, and go to state 40
+    tUnsigned            shift, and go to state 41
+    tContinue            shift, and go to state 42
+    tFor                 shift, and go to state 43
+    tSigned              shift, and go to state 44
+    tVoid                shift, and go to state 45
+    tDefault             shift, and go to state 46
+    tGoto                shift, and go to state 47
+    tVolatile            shift, and go to state 48
+    tDo                  shift, and go to state 49
+    tIf                  shift, and go to state 50
+    tStatic              shift, and go to state 51
+    tWhile               shift, and go to state 52
+    tSizeof              shift, and go to state 53
+    tAssignLeftShift     shift, and go to state 54
+    tAssignRightShift    shift, and go to state 55
+    tEllipsis            shift, and go to state 56
+    tAssignAND           shift, and go to state 57
+    tAssignXOR           shift, and go to state 58
+    tAssignOR            shift, and go to state 59
+    tAssignMultiply      shift, and go to state 60
+    tAssignDivide        shift, and go to state 61
+    tAssignModulo        shift, and go to state 62
+    tAssignAdd           shift, and go to state 63
+    tAssignSubtract      shift, and go to state 64
+    tShiftLeft           shift, and go to state 65
+    tShiftRight          shift, and go to state 66
+    tLessThanEquals      shift, and go to state 67
+    tGreaterThanEquals   shift, and go to state 68
+    tEquality            shift, and go to state 69
+    tNotEquality         shift, and go to state 70
+    tBooleanAND          shift, and go to state 71
+    tBooleanOR           shift, and go to state 72
+    tArrow               shift, and go to state 73
+    tIncrement           shift, and go to state 74
+    tDecrement           shift, and go to state 75
+    tLessThan            shift, and go to state 76
+    tGreaterThan         shift, and go to state 77
+    tSemicolon           shift, and go to state 135
+    tComma               shift, and go to state 78
+    tLeftTernary         shift, and go to state 79
+    tRightTernary        shift, and go to state 80
+    tAssignment          shift, and go to state 81
+    tBitwiseOR           shift, and go to state 82
+    tHat                 shift, and go to state 83
+    tLeftSquareBracket   shift, and go to state 84
+    tRightSquareBracket  shift, and go to state 85
+    tLeftBracket         shift, and go to state 86
+    tRightBracket        shift, and go to state 87
+    tDot                 shift, and go to state 88
+    tBitwiseAND          shift, and go to state 89
+    tMultiply            shift, and go to state 90
+    tAdd                 shift, and go to state 91
+    tSubtract            shift, and go to state 92
+    tTilde               shift, and go to state 93
+    tNot                 shift, and go to state 94
+    tDivide              shift, and go to state 95
+    tModulo              shift, and go to state 96
+    tStringLit           shift, and go to state 97
+    tIdentifier          shift, and go to state 98
+    tIntegerConst        shift, and go to state 99
+    tFloatConst          shift, and go to state 100
+    tCharConst           shift, and go to state 101
+    tInvalid             shift, and go to state 102
+
+    NON_MAINS    go to state 136
+    NON_SCOPE    go to state 137
+    M_NON_SCOPE  go to state 138
+
+
+State 128
+
+  111 IF: tIf tLeftBracket . M_NON_MAINS STATEMENT
+
+    tAuto                shift, and go to state 22
+    tDouble              shift, and go to state 23
+    tInt                 shift, and go to state 24
+    tStruct              shift, and go to state 25
+    tBreak               shift, and go to state 26
+    tElse                shift, and go to state 27
+    tLong                shift, and go to state 28
+    tSwitch              shift, and go to state 29
+    tCase                shift, and go to state 30
+    tEnum                shift, and go to state 31
+    tRegister            shift, and go to state 32
+    tTypedef             shift, and go to state 33
+    tChar                shift, and go to state 34
+    tExtern              shift, and go to state 35
+    tReturn              shift, and go to state 36
+    tUnion               shift, and go to state 37
+    tConst               shift, and go to state 38
+    tFloat               shift, and go to state 39
+    tShort               shift, and go to state 40
+    tUnsigned            shift, and go to state 41
+    tContinue            shift, and go to state 42
+    tFor                 shift, and go to state 43
+    tSigned              shift, and go to state 44
+    tVoid                shift, and go to state 45
+    tDefault             shift, and go to state 46
+    tGoto                shift, and go to state 47
+    tVolatile            shift, and go to state 48
+    tDo                  shift, and go to state 49
+    tIf                  shift, and go to state 50
+    tStatic              shift, and go to state 51
+    tWhile               shift, and go to state 52
+    tSizeof              shift, and go to state 53
+    tAssignLeftShift     shift, and go to state 54
+    tAssignRightShift    shift, and go to state 55
+    tEllipsis            shift, and go to state 56
+    tAssignAND           shift, and go to state 57
+    tAssignXOR           shift, and go to state 58
+    tAssignOR            shift, and go to state 59
+    tAssignMultiply      shift, and go to state 60
+    tAssignDivide        shift, and go to state 61
+    tAssignModulo        shift, and go to state 62
+    tAssignAdd           shift, and go to state 63
+    tAssignSubtract      shift, and go to state 64
+    tShiftLeft           shift, and go to state 65
+    tShiftRight          shift, and go to state 66
+    tLessThanEquals      shift, and go to state 67
+    tGreaterThanEquals   shift, and go to state 68
+    tEquality            shift, and go to state 69
+    tNotEquality         shift, and go to state 70
+    tBooleanAND          shift, and go to state 71
+    tBooleanOR           shift, and go to state 72
+    tArrow               shift, and go to state 73
+    tIncrement           shift, and go to state 74
+    tDecrement           shift, and go to state 75
+    tLessThan            shift, and go to state 76
+    tGreaterThan         shift, and go to state 77
+    tComma               shift, and go to state 78
+    tLeftTernary         shift, and go to state 79
+    tRightTernary        shift, and go to state 80
+    tAssignment          shift, and go to state 81
+    tBitwiseOR           shift, and go to state 82
+    tHat                 shift, and go to state 83
+    tLeftSquareBracket   shift, and go to state 84
+    tRightSquareBracket  shift, and go to state 85
+    tLeftBracket         shift, and go to state 86
+    tRightBracket        shift, and go to state 87
+    tDot                 shift, and go to state 88
+    tBitwiseAND          shift, and go to state 89
+    tMultiply            shift, and go to state 90
+    tAdd                 shift, and go to state 91
+    tSubtract            shift, and go to state 92
+    tTilde               shift, and go to state 93
+    tNot                 shift, and go to state 94
+    tDivide              shift, and go to state 95
+    tModulo              shift, and go to state 96
+    tStringLit           shift, and go to state 97
+    tIdentifier          shift, and go to state 98
+    tIntegerConst        shift, and go to state 99
+    tFloatConst          shift, and go to state 100
+    tCharConst           shift, and go to state 101
+    tInvalid             shift, and go to state 102
+
+    NON_MAINS    go to state 103
+    M_NON_MAINS  go to state 139
+
+
+State 129
+
+  109 WHILE: tWhile tLeftBracket . M_NON_MAINS STATEMENT
+
+    tAuto                shift, and go to state 22
+    tDouble              shift, and go to state 23
+    tInt                 shift, and go to state 24
+    tStruct              shift, and go to state 25
+    tBreak               shift, and go to state 26
+    tElse                shift, and go to state 27
+    tLong                shift, and go to state 28
+    tSwitch              shift, and go to state 29
+    tCase                shift, and go to state 30
+    tEnum                shift, and go to state 31
+    tRegister            shift, and go to state 32
+    tTypedef             shift, and go to state 33
+    tChar                shift, and go to state 34
+    tExtern              shift, and go to state 35
+    tReturn              shift, and go to state 36
+    tUnion               shift, and go to state 37
+    tConst               shift, and go to state 38
+    tFloat               shift, and go to state 39
+    tShort               shift, and go to state 40
+    tUnsigned            shift, and go to state 41
+    tContinue            shift, and go to state 42
+    tFor                 shift, and go to state 43
+    tSigned              shift, and go to state 44
+    tVoid                shift, and go to state 45
+    tDefault             shift, and go to state 46
+    tGoto                shift, and go to state 47
+    tVolatile            shift, and go to state 48
+    tDo                  shift, and go to state 49
+    tIf                  shift, and go to state 50
+    tStatic              shift, and go to state 51
+    tWhile               shift, and go to state 52
+    tSizeof              shift, and go to state 53
+    tAssignLeftShift     shift, and go to state 54
+    tAssignRightShift    shift, and go to state 55
+    tEllipsis            shift, and go to state 56
+    tAssignAND           shift, and go to state 57
+    tAssignXOR           shift, and go to state 58
+    tAssignOR            shift, and go to state 59
+    tAssignMultiply      shift, and go to state 60
+    tAssignDivide        shift, and go to state 61
+    tAssignModulo        shift, and go to state 62
+    tAssignAdd           shift, and go to state 63
+    tAssignSubtract      shift, and go to state 64
+    tShiftLeft           shift, and go to state 65
+    tShiftRight          shift, and go to state 66
+    tLessThanEquals      shift, and go to state 67
+    tGreaterThanEquals   shift, and go to state 68
+    tEquality            shift, and go to state 69
+    tNotEquality         shift, and go to state 70
+    tBooleanAND          shift, and go to state 71
+    tBooleanOR           shift, and go to state 72
+    tArrow               shift, and go to state 73
+    tIncrement           shift, and go to state 74
+    tDecrement           shift, and go to state 75
+    tLessThan            shift, and go to state 76
+    tGreaterThan         shift, and go to state 77
+    tComma               shift, and go to state 78
+    tLeftTernary         shift, and go to state 79
+    tRightTernary        shift, and go to state 80
+    tAssignment          shift, and go to state 81
+    tBitwiseOR           shift, and go to state 82
+    tHat                 shift, and go to state 83
+    tLeftSquareBracket   shift, and go to state 84
+    tRightSquareBracket  shift, and go to state 85
+    tLeftBracket         shift, and go to state 86
+    tRightBracket        shift, and go to state 87
+    tDot                 shift, and go to state 88
+    tBitwiseAND          shift, and go to state 89
+    tMultiply            shift, and go to state 90
+    tAdd                 shift, and go to state 91
+    tSubtract            shift, and go to state 92
+    tTilde               shift, and go to state 93
+    tNot                 shift, and go to state 94
+    tDivide              shift, and go to state 95
+    tModulo              shift, and go to state 96
+    tStringLit           shift, and go to state 97
+    tIdentifier          shift, and go to state 98
+    tIntegerConst        shift, and go to state 99
+    tFloatConst          shift, and go to state 100
+    tCharConst           shift, and go to state 101
+    tInvalid             shift, and go to state 102
+
+    NON_MAINS    go to state 103
+    M_NON_MAINS  go to state 140
+
+
+State 130
+
+  101 BORING_STATEMENT: M_NON_MAINS tSemicolon .
+
+    $default  reduce using rule 101 (BORING_STATEMENT)
+
+
+State 131
+
+  103 COMPOUND_STATEMENT: tScopeBegin M_STATEMENTS tScopeEnd .
+
+    $default  reduce using rule 103 (COMPOUND_STATEMENT)
+
+
+State 132
+
+  100 M_STATEMENTS: M_STATEMENTS STATEMENT .
+
+    $default  reduce using rule 100 (M_STATEMENTS)
+
+
+State 133
+
+  112 ELIF: IF tElse . STATEMENT
+
+    tAuto                shift, and go to state 22
+    tDouble              shift, and go to state 23
+    tInt                 shift, and go to state 108
+    tStruct              shift, and go to state 25
+    tBreak               shift, and go to state 26
+    tElse                shift, and go to state 27
+    tLong                shift, and go to state 28
+    tSwitch              shift, and go to state 29
+    tCase                shift, and go to state 30
+    tEnum                shift, and go to state 31
+    tRegister            shift, and go to state 32
+    tTypedef             shift, and go to state 33
+    tChar                shift, and go to state 34
+    tExtern              shift, and go to state 35
+    tReturn              shift, and go to state 36
+    tUnion               shift, and go to state 37
+    tConst               shift, and go to state 38
+    tFloat               shift, and go to state 39
+    tShort               shift, and go to state 40
+    tUnsigned            shift, and go to state 41
+    tContinue            shift, and go to state 42
+    tFor                 shift, and go to state 109
+    tSigned              shift, and go to state 44
+    tVoid                shift, and go to state 45
+    tDefault             shift, and go to state 46
+    tGoto                shift, and go to state 47
+    tVolatile            shift, and go to state 48
+    tDo                  shift, and go to state 49
+    tIf                  shift, and go to state 110
+    tStatic              shift, and go to state 51
+    tWhile               shift, and go to state 111
+    tSizeof              shift, and go to state 53
+    tAssignLeftShift     shift, and go to state 54
+    tAssignRightShift    shift, and go to state 55
+    tEllipsis            shift, and go to state 56
+    tAssignAND           shift, and go to state 57
+    tAssignXOR           shift, and go to state 58
+    tAssignOR            shift, and go to state 59
+    tAssignMultiply      shift, and go to state 60
+    tAssignDivide        shift, and go to state 61
+    tAssignModulo        shift, and go to state 62
+    tAssignAdd           shift, and go to state 63
+    tAssignSubtract      shift, and go to state 64
+    tShiftLeft           shift, and go to state 65
+    tShiftRight          shift, and go to state 66
+    tLessThanEquals      shift, and go to state 67
+    tGreaterThanEquals   shift, and go to state 68
+    tEquality            shift, and go to state 69
+    tNotEquality         shift, and go to state 70
+    tBooleanAND          shift, and go to state 71
+    tBooleanOR           shift, and go to state 72
+    tArrow               shift, and go to state 73
+    tIncrement           shift, and go to state 74
+    tDecrement           shift, and go to state 75
+    tScopeBegin          shift, and go to state 19
+    tLessThan            shift, and go to state 76
+    tGreaterThan         shift, and go to state 77
+    tComma               shift, and go to state 78
+    tLeftTernary         shift, and go to state 79
+    tRightTernary        shift, and go to state 80
+    tAssignment          shift, and go to state 81
+    tBitwiseOR           shift, and go to state 82
+    tHat                 shift, and go to state 83
+    tLeftSquareBracket   shift, and go to state 84
+    tRightSquareBracket  shift, and go to state 85
+    tLeftBracket         shift, and go to state 86
+    tRightBracket        shift, and go to state 87
+    tDot                 shift, and go to state 88
+    tBitwiseAND          shift, and go to state 89
+    tMultiply            shift, and go to state 90
+    tAdd                 shift, and go to state 91
+    tSubtract            shift, and go to state 92
+    tTilde               shift, and go to state 93
+    tNot                 shift, and go to state 94
+    tDivide              shift, and go to state 95
+    tModulo              shift, and go to state 96
+    tStringLit           shift, and go to state 97
+    tIdentifier          shift, and go to state 98
+    tIntegerConst        shift, and go to state 99
+    tFloatConst          shift, and go to state 100
+    tCharConst           shift, and go to state 101
+    tInvalid             shift, and go to state 102
+
+    NON_MAINS           go to state 103
+    M_NON_MAINS         go to state 113
+    STATEMENT           go to state 141
+    DECLARE_ST          go to state 115
+    BORING_STATEMENT    go to state 117
+    COMPOUND_STATEMENT  go to state 118
+    WHILE               go to state 119
+    FOR                 go to state 120
+    IF                  go to state 121
+    ELIF                go to state 122
+
+
+State 134
+
+  107 INNER_LIST: INNER_LIST tComma tInt tIdentifier .
+
+    $default  reduce using rule 107 (INNER_LIST)
+
+
+State 135
+
+   82 NON_SCOPE: tSemicolon .
+
+    $default  reduce using rule 82 (NON_SCOPE)
+
+
+State 136
+
+   83 NON_SCOPE: NON_MAINS .
+
+    $default  reduce using rule 83 (NON_SCOPE)
+
+
+State 137
+
+   84 M_NON_SCOPE: NON_SCOPE .
+
+    $default  reduce using rule 84 (M_NON_SCOPE)
+
+
+State 138
+
+   85 M_NON_SCOPE: M_NON_SCOPE . NON_SCOPE
+  110 FOR: tFor tLeftBracket M_NON_SCOPE . STATEMENT
+
+    tAuto                shift, and go to state 22
+    tDouble              shift, and go to state 23
+    tInt                 shift, and go to state 108
+    tStruct              shift, and go to state 25
+    tBreak               shift, and go to state 26
+    tElse                shift, and go to state 27
+    tLong                shift, and go to state 28
+    tSwitch              shift, and go to state 29
+    tCase                shift, and go to state 30
+    tEnum                shift, and go to state 31
+    tRegister            shift, and go to state 32
+    tTypedef             shift, and go to state 33
+    tChar                shift, and go to state 34
+    tExtern              shift, and go to state 35
+    tReturn              shift, and go to state 36
+    tUnion               shift, and go to state 37
+    tConst               shift, and go to state 38
+    tFloat               shift, and go to state 39
+    tShort               shift, and go to state 40
+    tUnsigned            shift, and go to state 41
+    tContinue            shift, and go to state 42
+    tFor                 shift, and go to state 109
+    tSigned              shift, and go to state 44
+    tVoid                shift, and go to state 45
+    tDefault             shift, and go to state 46
+    tGoto                shift, and go to state 47
+    tVolatile            shift, and go to state 48
+    tDo                  shift, and go to state 49
+    tIf                  shift, and go to state 110
+    tStatic              shift, and go to state 51
+    tWhile               shift, and go to state 111
+    tSizeof              shift, and go to state 53
+    tAssignLeftShift     shift, and go to state 54
+    tAssignRightShift    shift, and go to state 55
+    tEllipsis            shift, and go to state 56
+    tAssignAND           shift, and go to state 57
+    tAssignXOR           shift, and go to state 58
+    tAssignOR            shift, and go to state 59
+    tAssignMultiply      shift, and go to state 60
+    tAssignDivide        shift, and go to state 61
+    tAssignModulo        shift, and go to state 62
+    tAssignAdd           shift, and go to state 63
+    tAssignSubtract      shift, and go to state 64
+    tShiftLeft           shift, and go to state 65
+    tShiftRight          shift, and go to state 66
+    tLessThanEquals      shift, and go to state 67
+    tGreaterThanEquals   shift, and go to state 68
+    tEquality            shift, and go to state 69
+    tNotEquality         shift, and go to state 70
+    tBooleanAND          shift, and go to state 71
+    tBooleanOR           shift, and go to state 72
+    tArrow               shift, and go to state 73
+    tIncrement           shift, and go to state 74
+    tDecrement           shift, and go to state 75
+    tScopeBegin          shift, and go to state 19
+    tLessThan            shift, and go to state 76
+    tGreaterThan         shift, and go to state 77
+    tSemicolon           shift, and go to state 135
+    tComma               shift, and go to state 78
+    tLeftTernary         shift, and go to state 79
+    tRightTernary        shift, and go to state 80
+    tAssignment          shift, and go to state 81
+    tBitwiseOR           shift, and go to state 82
+    tHat                 shift, and go to state 83
+    tLeftSquareBracket   shift, and go to state 84
+    tRightSquareBracket  shift, and go to state 85
+    tLeftBracket         shift, and go to state 86
+    tRightBracket        shift, and go to state 87
+    tDot                 shift, and go to state 88
+    tBitwiseAND          shift, and go to state 89
+    tMultiply            shift, and go to state 90
+    tAdd                 shift, and go to state 91
+    tSubtract            shift, and go to state 92
+    tTilde               shift, and go to state 93
+    tNot                 shift, and go to state 94
+    tDivide              shift, and go to state 95
+    tModulo              shift, and go to state 96
+    tStringLit           shift, and go to state 97
+    tIdentifier          shift, and go to state 98
+    tIntegerConst        shift, and go to state 99
+    tFloatConst          shift, and go to state 100
+    tCharConst           shift, and go to state 101
+    tInvalid             shift, and go to state 102
+
+    NON_MAINS           go to state 142
+    NON_SCOPE           go to state 143
+    M_NON_MAINS         go to state 113
+    STATEMENT           go to state 144
+    DECLARE_ST          go to state 115
+    BORING_STATEMENT    go to state 117
+    COMPOUND_STATEMENT  go to state 118
+    WHILE               go to state 119
+    FOR                 go to state 120
+    IF                  go to state 121
+    ELIF                go to state 122
+
+
+State 139
+
+   87 M_NON_MAINS: M_NON_MAINS . NON_MAINS
+  111 IF: tIf tLeftBracket M_NON_MAINS . STATEMENT
+
+    tAuto                shift, and go to state 22
+    tDouble              shift, and go to state 23
+    tInt                 shift, and go to state 108
+    tStruct              shift, and go to state 25
+    tBreak               shift, and go to state 26
+    tElse                shift, and go to state 27
+    tLong                shift, and go to state 28
+    tSwitch              shift, and go to state 29
+    tCase                shift, and go to state 30
+    tEnum                shift, and go to state 31
+    tRegister            shift, and go to state 32
+    tTypedef             shift, and go to state 33
+    tChar                shift, and go to state 34
+    tExtern              shift, and go to state 35
+    tReturn              shift, and go to state 36
+    tUnion               shift, and go to state 37
+    tConst               shift, and go to state 38
+    tFloat               shift, and go to state 39
+    tShort               shift, and go to state 40
+    tUnsigned            shift, and go to state 41
+    tContinue            shift, and go to state 42
+    tFor                 shift, and go to state 109
+    tSigned              shift, and go to state 44
+    tVoid                shift, and go to state 45
+    tDefault             shift, and go to state 46
+    tGoto                shift, and go to state 47
+    tVolatile            shift, and go to state 48
+    tDo                  shift, and go to state 49
+    tIf                  shift, and go to state 110
+    tStatic              shift, and go to state 51
+    tWhile               shift, and go to state 111
+    tSizeof              shift, and go to state 53
+    tAssignLeftShift     shift, and go to state 54
+    tAssignRightShift    shift, and go to state 55
+    tEllipsis            shift, and go to state 56
+    tAssignAND           shift, and go to state 57
+    tAssignXOR           shift, and go to state 58
+    tAssignOR            shift, and go to state 59
+    tAssignMultiply      shift, and go to state 60
+    tAssignDivide        shift, and go to state 61
+    tAssignModulo        shift, and go to state 62
+    tAssignAdd           shift, and go to state 63
+    tAssignSubtract      shift, and go to state 64
+    tShiftLeft           shift, and go to state 65
+    tShiftRight          shift, and go to state 66
+    tLessThanEquals      shift, and go to state 67
+    tGreaterThanEquals   shift, and go to state 68
+    tEquality            shift, and go to state 69
+    tNotEquality         shift, and go to state 70
+    tBooleanAND          shift, and go to state 71
+    tBooleanOR           shift, and go to state 72
+    tArrow               shift, and go to state 73
+    tIncrement           shift, and go to state 74
+    tDecrement           shift, and go to state 75
+    tScopeBegin          shift, and go to state 19
+    tLessThan            shift, and go to state 76
+    tGreaterThan         shift, and go to state 77
+    tComma               shift, and go to state 78
+    tLeftTernary         shift, and go to state 79
+    tRightTernary        shift, and go to state 80
+    tAssignment          shift, and go to state 81
+    tBitwiseOR           shift, and go to state 82
+    tHat                 shift, and go to state 83
+    tLeftSquareBracket   shift, and go to state 84
+    tRightSquareBracket  shift, and go to state 85
+    tLeftBracket         shift, and go to state 86
+    tRightBracket        shift, and go to state 87
+    tDot                 shift, and go to state 88
+    tBitwiseAND          shift, and go to state 89
+    tMultiply            shift, and go to state 90
+    tAdd                 shift, and go to state 91
+    tSubtract            shift, and go to state 92
+    tTilde               shift, and go to state 93
+    tNot                 shift, and go to state 94
+    tDivide              shift, and go to state 95
+    tModulo              shift, and go to state 96
+    tStringLit           shift, and go to state 97
+    tIdentifier          shift, and go to state 98
+    tIntegerConst        shift, and go to state 99
+    tFloatConst          shift, and go to state 100
+    tCharConst           shift, and go to state 101
+    tInvalid             shift, and go to state 102
+
+    NON_MAINS           go to state 145
+    M_NON_MAINS         go to state 113
+    STATEMENT           go to state 146
+    DECLARE_ST          go to state 115
+    BORING_STATEMENT    go to state 117
+    COMPOUND_STATEMENT  go to state 118
+    WHILE               go to state 119
+    FOR                 go to state 120
+    IF                  go to state 121
+    ELIF                go to state 122
+
+
+State 140
+
+   87 M_NON_MAINS: M_NON_MAINS . NON_MAINS
+  109 WHILE: tWhile tLeftBracket M_NON_MAINS . STATEMENT
+
+    tAuto                shift, and go to state 22
+    tDouble              shift, and go to state 23
+    tInt                 shift, and go to state 108
+    tStruct              shift, and go to state 25
+    tBreak               shift, and go to state 26
+    tElse                shift, and go to state 27
+    tLong                shift, and go to state 28
+    tSwitch              shift, and go to state 29
+    tCase                shift, and go to state 30
+    tEnum                shift, and go to state 31
+    tRegister            shift, and go to state 32
+    tTypedef             shift, and go to state 33
+    tChar                shift, and go to state 34
+    tExtern              shift, and go to state 35
+    tReturn              shift, and go to state 36
+    tUnion               shift, and go to state 37
+    tConst               shift, and go to state 38
+    tFloat               shift, and go to state 39
+    tShort               shift, and go to state 40
+    tUnsigned            shift, and go to state 41
+    tContinue            shift, and go to state 42
+    tFor                 shift, and go to state 109
+    tSigned              shift, and go to state 44
+    tVoid                shift, and go to state 45
+    tDefault             shift, and go to state 46
+    tGoto                shift, and go to state 47
+    tVolatile            shift, and go to state 48
+    tDo                  shift, and go to state 49
+    tIf                  shift, and go to state 110
+    tStatic              shift, and go to state 51
+    tWhile               shift, and go to state 111
+    tSizeof              shift, and go to state 53
+    tAssignLeftShift     shift, and go to state 54
+    tAssignRightShift    shift, and go to state 55
+    tEllipsis            shift, and go to state 56
+    tAssignAND           shift, and go to state 57
+    tAssignXOR           shift, and go to state 58
+    tAssignOR            shift, and go to state 59
+    tAssignMultiply      shift, and go to state 60
+    tAssignDivide        shift, and go to state 61
+    tAssignModulo        shift, and go to state 62
+    tAssignAdd           shift, and go to state 63
+    tAssignSubtract      shift, and go to state 64
+    tShiftLeft           shift, and go to state 65
+    tShiftRight          shift, and go to state 66
+    tLessThanEquals      shift, and go to state 67
+    tGreaterThanEquals   shift, and go to state 68
+    tEquality            shift, and go to state 69
+    tNotEquality         shift, and go to state 70
+    tBooleanAND          shift, and go to state 71
+    tBooleanOR           shift, and go to state 72
+    tArrow               shift, and go to state 73
+    tIncrement           shift, and go to state 74
+    tDecrement           shift, and go to state 75
+    tScopeBegin          shift, and go to state 19
+    tLessThan            shift, and go to state 76
+    tGreaterThan         shift, and go to state 77
+    tComma               shift, and go to state 78
+    tLeftTernary         shift, and go to state 79
+    tRightTernary        shift, and go to state 80
+    tAssignment          shift, and go to state 81
+    tBitwiseOR           shift, and go to state 82
+    tHat                 shift, and go to state 83
+    tLeftSquareBracket   shift, and go to state 84
+    tRightSquareBracket  shift, and go to state 85
+    tLeftBracket         shift, and go to state 86
+    tRightBracket        shift, and go to state 87
+    tDot                 shift, and go to state 88
+    tBitwiseAND          shift, and go to state 89
+    tMultiply            shift, and go to state 90
+    tAdd                 shift, and go to state 91
+    tSubtract            shift, and go to state 92
+    tTilde               shift, and go to state 93
+    tNot                 shift, and go to state 94
+    tDivide              shift, and go to state 95
+    tModulo              shift, and go to state 96
+    tStringLit           shift, and go to state 97
+    tIdentifier          shift, and go to state 98
+    tIntegerConst        shift, and go to state 99
+    tFloatConst          shift, and go to state 100
+    tCharConst           shift, and go to state 101
+    tInvalid             shift, and go to state 102
+
+    NON_MAINS           go to state 145
+    M_NON_MAINS         go to state 113
+    STATEMENT           go to state 147
+    DECLARE_ST          go to state 115
+    BORING_STATEMENT    go to state 117
+    COMPOUND_STATEMENT  go to state 118
+    WHILE               go to state 119
+    FOR                 go to state 120
+    IF                  go to state 121
+    ELIF                go to state 122
+
+
+State 141
+
+  112 ELIF: IF tElse STATEMENT .
+
+    $default  reduce using rule 112 (ELIF)
+
+
+State 142
+
+   83 NON_SCOPE: NON_MAINS .
+   86 M_NON_MAINS: NON_MAINS .
+
+    tAuto                reduce using rule 83 (NON_SCOPE)
+    tAuto                [reduce using rule 86 (M_NON_MAINS)]
+    tDouble              reduce using rule 83 (NON_SCOPE)
+    tDouble              [reduce using rule 86 (M_NON_MAINS)]
+    tInt                 reduce using rule 83 (NON_SCOPE)
+    tInt                 [reduce using rule 86 (M_NON_MAINS)]
+    tStruct              reduce using rule 83 (NON_SCOPE)
+    tStruct              [reduce using rule 86 (M_NON_MAINS)]
+    tBreak               reduce using rule 83 (NON_SCOPE)
+    tBreak               [reduce using rule 86 (M_NON_MAINS)]
+    tElse                reduce using rule 83 (NON_SCOPE)
+    tElse                [reduce using rule 86 (M_NON_MAINS)]
+    tLong                reduce using rule 83 (NON_SCOPE)
+    tLong                [reduce using rule 86 (M_NON_MAINS)]
+    tSwitch              reduce using rule 83 (NON_SCOPE)
+    tSwitch              [reduce using rule 86 (M_NON_MAINS)]
+    tCase                reduce using rule 83 (NON_SCOPE)
+    tCase                [reduce using rule 86 (M_NON_MAINS)]
+    tEnum                reduce using rule 83 (NON_SCOPE)
+    tEnum                [reduce using rule 86 (M_NON_MAINS)]
+    tRegister            reduce using rule 83 (NON_SCOPE)
+    tRegister            [reduce using rule 86 (M_NON_MAINS)]
+    tTypedef             reduce using rule 83 (NON_SCOPE)
+    tTypedef             [reduce using rule 86 (M_NON_MAINS)]
+    tChar                reduce using rule 83 (NON_SCOPE)
+    tChar                [reduce using rule 86 (M_NON_MAINS)]
+    tExtern              reduce using rule 83 (NON_SCOPE)
+    tExtern              [reduce using rule 86 (M_NON_MAINS)]
+    tReturn              reduce using rule 83 (NON_SCOPE)
+    tReturn              [reduce using rule 86 (M_NON_MAINS)]
+    tUnion               reduce using rule 83 (NON_SCOPE)
+    tUnion               [reduce using rule 86 (M_NON_MAINS)]
+    tConst               reduce using rule 83 (NON_SCOPE)
+    tConst               [reduce using rule 86 (M_NON_MAINS)]
+    tFloat               reduce using rule 83 (NON_SCOPE)
+    tFloat               [reduce using rule 86 (M_NON_MAINS)]
+    tShort               reduce using rule 83 (NON_SCOPE)
+    tShort               [reduce using rule 86 (M_NON_MAINS)]
+    tUnsigned            reduce using rule 83 (NON_SCOPE)
+    tUnsigned            [reduce using rule 86 (M_NON_MAINS)]
+    tContinue            reduce using rule 83 (NON_SCOPE)
+    tContinue            [reduce using rule 86 (M_NON_MAINS)]
+    tFor                 reduce using rule 83 (NON_SCOPE)
+    tFor                 [reduce using rule 86 (M_NON_MAINS)]
+    tSigned              reduce using rule 83 (NON_SCOPE)
+    tSigned              [reduce using rule 86 (M_NON_MAINS)]
+    tVoid                reduce using rule 83 (NON_SCOPE)
+    tVoid                [reduce using rule 86 (M_NON_MAINS)]
+    tDefault             reduce using rule 83 (NON_SCOPE)
+    tDefault             [reduce using rule 86 (M_NON_MAINS)]
+    tGoto                reduce using rule 83 (NON_SCOPE)
+    tGoto                [reduce using rule 86 (M_NON_MAINS)]
+    tVolatile            reduce using rule 83 (NON_SCOPE)
+    tVolatile            [reduce using rule 86 (M_NON_MAINS)]
+    tDo                  reduce using rule 83 (NON_SCOPE)
+    tDo                  [reduce using rule 86 (M_NON_MAINS)]
+    tIf                  reduce using rule 83 (NON_SCOPE)
+    tIf                  [reduce using rule 86 (M_NON_MAINS)]
+    tStatic              reduce using rule 83 (NON_SCOPE)
+    tStatic              [reduce using rule 86 (M_NON_MAINS)]
+    tWhile               reduce using rule 83 (NON_SCOPE)
+    tWhile               [reduce using rule 86 (M_NON_MAINS)]
+    tSizeof              reduce using rule 83 (NON_SCOPE)
+    tSizeof              [reduce using rule 86 (M_NON_MAINS)]
+    tAssignLeftShift     reduce using rule 83 (NON_SCOPE)
+    tAssignLeftShift     [reduce using rule 86 (M_NON_MAINS)]
+    tAssignRightShift    reduce using rule 83 (NON_SCOPE)
+    tAssignRightShift    [reduce using rule 86 (M_NON_MAINS)]
+    tEllipsis            reduce using rule 83 (NON_SCOPE)
+    tEllipsis            [reduce using rule 86 (M_NON_MAINS)]
+    tAssignAND           reduce using rule 83 (NON_SCOPE)
+    tAssignAND           [reduce using rule 86 (M_NON_MAINS)]
+    tAssignXOR           reduce using rule 83 (NON_SCOPE)
+    tAssignXOR           [reduce using rule 86 (M_NON_MAINS)]
+    tAssignOR            reduce using rule 83 (NON_SCOPE)
+    tAssignOR            [reduce using rule 86 (M_NON_MAINS)]
+    tAssignMultiply      reduce using rule 83 (NON_SCOPE)
+    tAssignMultiply      [reduce using rule 86 (M_NON_MAINS)]
+    tAssignDivide        reduce using rule 83 (NON_SCOPE)
+    tAssignDivide        [reduce using rule 86 (M_NON_MAINS)]
+    tAssignModulo        reduce using rule 83 (NON_SCOPE)
+    tAssignModulo        [reduce using rule 86 (M_NON_MAINS)]
+    tAssignAdd           reduce using rule 83 (NON_SCOPE)
+    tAssignAdd           [reduce using rule 86 (M_NON_MAINS)]
+    tAssignSubtract      reduce using rule 83 (NON_SCOPE)
+    tAssignSubtract      [reduce using rule 86 (M_NON_MAINS)]
+    tShiftLeft           reduce using rule 83 (NON_SCOPE)
+    tShiftLeft           [reduce using rule 86 (M_NON_MAINS)]
+    tShiftRight          reduce using rule 83 (NON_SCOPE)
+    tShiftRight          [reduce using rule 86 (M_NON_MAINS)]
+    tLessThanEquals      reduce using rule 83 (NON_SCOPE)
+    tLessThanEquals      [reduce using rule 86 (M_NON_MAINS)]
+    tGreaterThanEquals   reduce using rule 83 (NON_SCOPE)
+    tGreaterThanEquals   [reduce using rule 86 (M_NON_MAINS)]
+    tEquality            reduce using rule 83 (NON_SCOPE)
+    tEquality            [reduce using rule 86 (M_NON_MAINS)]
+    tNotEquality         reduce using rule 83 (NON_SCOPE)
+    tNotEquality         [reduce using rule 86 (M_NON_MAINS)]
+    tBooleanAND          reduce using rule 83 (NON_SCOPE)
+    tBooleanAND          [reduce using rule 86 (M_NON_MAINS)]
+    tBooleanOR           reduce using rule 83 (NON_SCOPE)
+    tBooleanOR           [reduce using rule 86 (M_NON_MAINS)]
+    tArrow               reduce using rule 83 (NON_SCOPE)
+    tArrow               [reduce using rule 86 (M_NON_MAINS)]
+    tIncrement           reduce using rule 83 (NON_SCOPE)
+    tIncrement           [reduce using rule 86 (M_NON_MAINS)]
+    tDecrement           reduce using rule 83 (NON_SCOPE)
+    tDecrement           [reduce using rule 86 (M_NON_MAINS)]
+    tLessThan            reduce using rule 83 (NON_SCOPE)
+    tLessThan            [reduce using rule 86 (M_NON_MAINS)]
+    tGreaterThan         reduce using rule 83 (NON_SCOPE)
+    tGreaterThan         [reduce using rule 86 (M_NON_MAINS)]
+    tSemicolon           reduce using rule 83 (NON_SCOPE)
+    tSemicolon           [reduce using rule 86 (M_NON_MAINS)]
+    tComma               reduce using rule 83 (NON_SCOPE)
+    tComma               [reduce using rule 86 (M_NON_MAINS)]
+    tLeftTernary         reduce using rule 83 (NON_SCOPE)
+    tLeftTernary         [reduce using rule 86 (M_NON_MAINS)]
+    tRightTernary        reduce using rule 83 (NON_SCOPE)
+    tRightTernary        [reduce using rule 86 (M_NON_MAINS)]
+    tAssignment          reduce using rule 83 (NON_SCOPE)
+    tAssignment          [reduce using rule 86 (M_NON_MAINS)]
+    tBitwiseOR           reduce using rule 83 (NON_SCOPE)
+    tBitwiseOR           [reduce using rule 86 (M_NON_MAINS)]
+    tHat                 reduce using rule 83 (NON_SCOPE)
+    tHat                 [reduce using rule 86 (M_NON_MAINS)]
+    tLeftSquareBracket   reduce using rule 83 (NON_SCOPE)
+    tLeftSquareBracket   [reduce using rule 86 (M_NON_MAINS)]
+    tRightSquareBracket  reduce using rule 83 (NON_SCOPE)
+    tRightSquareBracket  [reduce using rule 86 (M_NON_MAINS)]
+    tLeftBracket         reduce using rule 83 (NON_SCOPE)
+    tLeftBracket         [reduce using rule 86 (M_NON_MAINS)]
+    tRightBracket        reduce using rule 83 (NON_SCOPE)
+    tRightBracket        [reduce using rule 86 (M_NON_MAINS)]
+    tDot                 reduce using rule 83 (NON_SCOPE)
+    tDot                 [reduce using rule 86 (M_NON_MAINS)]
+    tBitwiseAND          reduce using rule 83 (NON_SCOPE)
+    tBitwiseAND          [reduce using rule 86 (M_NON_MAINS)]
+    tMultiply            reduce using rule 83 (NON_SCOPE)
+    tMultiply            [reduce using rule 86 (M_NON_MAINS)]
+    tAdd                 reduce using rule 83 (NON_SCOPE)
+    tAdd                 [reduce using rule 86 (M_NON_MAINS)]
+    tSubtract            reduce using rule 83 (NON_SCOPE)
+    tSubtract            [reduce using rule 86 (M_NON_MAINS)]
+    tTilde               reduce using rule 83 (NON_SCOPE)
+    tTilde               [reduce using rule 86 (M_NON_MAINS)]
+    tNot                 reduce using rule 83 (NON_SCOPE)
+    tNot                 [reduce using rule 86 (M_NON_MAINS)]
+    tDivide              reduce using rule 83 (NON_SCOPE)
+    tDivide              [reduce using rule 86 (M_NON_MAINS)]
+    tModulo              reduce using rule 83 (NON_SCOPE)
+    tModulo              [reduce using rule 86 (M_NON_MAINS)]
+    tStringLit           reduce using rule 83 (NON_SCOPE)
+    tStringLit           [reduce using rule 86 (M_NON_MAINS)]
+    tIdentifier          reduce using rule 83 (NON_SCOPE)
+    tIdentifier          [reduce using rule 86 (M_NON_MAINS)]
+    tIntegerConst        reduce using rule 83 (NON_SCOPE)
+    tIntegerConst        [reduce using rule 86 (M_NON_MAINS)]
+    tFloatConst          reduce using rule 83 (NON_SCOPE)
+    tFloatConst          [reduce using rule 86 (M_NON_MAINS)]
+    tCharConst           reduce using rule 83 (NON_SCOPE)
+    tCharConst           [reduce using rule 86 (M_NON_MAINS)]
+    tInvalid             reduce using rule 83 (NON_SCOPE)
+    tInvalid             [reduce using rule 86 (M_NON_MAINS)]
+    $default             reduce using rule 83 (NON_SCOPE)
+
+
+State 143
+
+   85 M_NON_SCOPE: M_NON_SCOPE NON_SCOPE .
+
+    $default  reduce using rule 85 (M_NON_SCOPE)
+
+
+State 144
+
+  110 FOR: tFor tLeftBracket M_NON_SCOPE STATEMENT .
+
+    $default  reduce using rule 110 (FOR)
+
+
+State 145
+
+   86 M_NON_MAINS: NON_MAINS .
+   87            | M_NON_MAINS NON_MAINS .
+
+    tAuto                reduce using rule 86 (M_NON_MAINS)
+    tAuto                [reduce using rule 87 (M_NON_MAINS)]
+    tDouble              reduce using rule 86 (M_NON_MAINS)
+    tDouble              [reduce using rule 87 (M_NON_MAINS)]
+    tInt                 reduce using rule 86 (M_NON_MAINS)
+    tInt                 [reduce using rule 87 (M_NON_MAINS)]
+    tStruct              reduce using rule 86 (M_NON_MAINS)
+    tStruct              [reduce using rule 87 (M_NON_MAINS)]
+    tBreak               reduce using rule 86 (M_NON_MAINS)
+    tBreak               [reduce using rule 87 (M_NON_MAINS)]
+    tElse                reduce using rule 86 (M_NON_MAINS)
+    tElse                [reduce using rule 87 (M_NON_MAINS)]
+    tLong                reduce using rule 86 (M_NON_MAINS)
+    tLong                [reduce using rule 87 (M_NON_MAINS)]
+    tSwitch              reduce using rule 86 (M_NON_MAINS)
+    tSwitch              [reduce using rule 87 (M_NON_MAINS)]
+    tCase                reduce using rule 86 (M_NON_MAINS)
+    tCase                [reduce using rule 87 (M_NON_MAINS)]
+    tEnum                reduce using rule 86 (M_NON_MAINS)
+    tEnum                [reduce using rule 87 (M_NON_MAINS)]
+    tRegister            reduce using rule 86 (M_NON_MAINS)
+    tRegister            [reduce using rule 87 (M_NON_MAINS)]
+    tTypedef             reduce using rule 86 (M_NON_MAINS)
+    tTypedef             [reduce using rule 87 (M_NON_MAINS)]
+    tChar                reduce using rule 86 (M_NON_MAINS)
+    tChar                [reduce using rule 87 (M_NON_MAINS)]
+    tExtern              reduce using rule 86 (M_NON_MAINS)
+    tExtern              [reduce using rule 87 (M_NON_MAINS)]
+    tReturn              reduce using rule 86 (M_NON_MAINS)
+    tReturn              [reduce using rule 87 (M_NON_MAINS)]
+    tUnion               reduce using rule 86 (M_NON_MAINS)
+    tUnion               [reduce using rule 87 (M_NON_MAINS)]
+    tConst               reduce using rule 86 (M_NON_MAINS)
+    tConst               [reduce using rule 87 (M_NON_MAINS)]
+    tFloat               reduce using rule 86 (M_NON_MAINS)
+    tFloat               [reduce using rule 87 (M_NON_MAINS)]
+    tShort               reduce using rule 86 (M_NON_MAINS)
+    tShort               [reduce using rule 87 (M_NON_MAINS)]
+    tUnsigned            reduce using rule 86 (M_NON_MAINS)
+    tUnsigned            [reduce using rule 87 (M_NON_MAINS)]
+    tContinue            reduce using rule 86 (M_NON_MAINS)
+    tContinue            [reduce using rule 87 (M_NON_MAINS)]
+    tFor                 reduce using rule 86 (M_NON_MAINS)
+    tFor                 [reduce using rule 87 (M_NON_MAINS)]
+    tSigned              reduce using rule 86 (M_NON_MAINS)
+    tSigned              [reduce using rule 87 (M_NON_MAINS)]
+    tVoid                reduce using rule 86 (M_NON_MAINS)
+    tVoid                [reduce using rule 87 (M_NON_MAINS)]
+    tDefault             reduce using rule 86 (M_NON_MAINS)
+    tDefault             [reduce using rule 87 (M_NON_MAINS)]
+    tGoto                reduce using rule 86 (M_NON_MAINS)
+    tGoto                [reduce using rule 87 (M_NON_MAINS)]
+    tVolatile            reduce using rule 86 (M_NON_MAINS)
+    tVolatile            [reduce using rule 87 (M_NON_MAINS)]
+    tDo                  reduce using rule 86 (M_NON_MAINS)
+    tDo                  [reduce using rule 87 (M_NON_MAINS)]
+    tIf                  reduce using rule 86 (M_NON_MAINS)
+    tIf                  [reduce using rule 87 (M_NON_MAINS)]
+    tStatic              reduce using rule 86 (M_NON_MAINS)
+    tStatic              [reduce using rule 87 (M_NON_MAINS)]
+    tWhile               reduce using rule 86 (M_NON_MAINS)
+    tWhile               [reduce using rule 87 (M_NON_MAINS)]
+    tSizeof              reduce using rule 86 (M_NON_MAINS)
+    tSizeof              [reduce using rule 87 (M_NON_MAINS)]
+    tAssignLeftShift     reduce using rule 86 (M_NON_MAINS)
+    tAssignLeftShift     [reduce using rule 87 (M_NON_MAINS)]
+    tAssignRightShift    reduce using rule 86 (M_NON_MAINS)
+    tAssignRightShift    [reduce using rule 87 (M_NON_MAINS)]
+    tEllipsis            reduce using rule 86 (M_NON_MAINS)
+    tEllipsis            [reduce using rule 87 (M_NON_MAINS)]
+    tAssignAND           reduce using rule 86 (M_NON_MAINS)
+    tAssignAND           [reduce using rule 87 (M_NON_MAINS)]
+    tAssignXOR           reduce using rule 86 (M_NON_MAINS)
+    tAssignXOR           [reduce using rule 87 (M_NON_MAINS)]
+    tAssignOR            reduce using rule 86 (M_NON_MAINS)
+    tAssignOR            [reduce using rule 87 (M_NON_MAINS)]
+    tAssignMultiply      reduce using rule 86 (M_NON_MAINS)
+    tAssignMultiply      [reduce using rule 87 (M_NON_MAINS)]
+    tAssignDivide        reduce using rule 86 (M_NON_MAINS)
+    tAssignDivide        [reduce using rule 87 (M_NON_MAINS)]
+    tAssignModulo        reduce using rule 86 (M_NON_MAINS)
+    tAssignModulo        [reduce using rule 87 (M_NON_MAINS)]
+    tAssignAdd           reduce using rule 86 (M_NON_MAINS)
+    tAssignAdd           [reduce using rule 87 (M_NON_MAINS)]
+    tAssignSubtract      reduce using rule 86 (M_NON_MAINS)
+    tAssignSubtract      [reduce using rule 87 (M_NON_MAINS)]
+    tShiftLeft           reduce using rule 86 (M_NON_MAINS)
+    tShiftLeft           [reduce using rule 87 (M_NON_MAINS)]
+    tShiftRight          reduce using rule 86 (M_NON_MAINS)
+    tShiftRight          [reduce using rule 87 (M_NON_MAINS)]
+    tLessThanEquals      reduce using rule 86 (M_NON_MAINS)
+    tLessThanEquals      [reduce using rule 87 (M_NON_MAINS)]
+    tGreaterThanEquals   reduce using rule 86 (M_NON_MAINS)
+    tGreaterThanEquals   [reduce using rule 87 (M_NON_MAINS)]
+    tEquality            reduce using rule 86 (M_NON_MAINS)
+    tEquality            [reduce using rule 87 (M_NON_MAINS)]
+    tNotEquality         reduce using rule 86 (M_NON_MAINS)
+    tNotEquality         [reduce using rule 87 (M_NON_MAINS)]
+    tBooleanAND          reduce using rule 86 (M_NON_MAINS)
+    tBooleanAND          [reduce using rule 87 (M_NON_MAINS)]
+    tBooleanOR           reduce using rule 86 (M_NON_MAINS)
+    tBooleanOR           [reduce using rule 87 (M_NON_MAINS)]
+    tArrow               reduce using rule 86 (M_NON_MAINS)
+    tArrow               [reduce using rule 87 (M_NON_MAINS)]
+    tIncrement           reduce using rule 86 (M_NON_MAINS)
+    tIncrement           [reduce using rule 87 (M_NON_MAINS)]
+    tDecrement           reduce using rule 86 (M_NON_MAINS)
+    tDecrement           [reduce using rule 87 (M_NON_MAINS)]
+    tScopeBegin          reduce using rule 87 (M_NON_MAINS)
+    tLessThan            reduce using rule 86 (M_NON_MAINS)
+    tLessThan            [reduce using rule 87 (M_NON_MAINS)]
+    tGreaterThan         reduce using rule 86 (M_NON_MAINS)
+    tGreaterThan         [reduce using rule 87 (M_NON_MAINS)]
+    tComma               reduce using rule 86 (M_NON_MAINS)
+    tComma               [reduce using rule 87 (M_NON_MAINS)]
+    tLeftTernary         reduce using rule 86 (M_NON_MAINS)
+    tLeftTernary         [reduce using rule 87 (M_NON_MAINS)]
+    tRightTernary        reduce using rule 86 (M_NON_MAINS)
+    tRightTernary        [reduce using rule 87 (M_NON_MAINS)]
+    tAssignment          reduce using rule 86 (M_NON_MAINS)
+    tAssignment          [reduce using rule 87 (M_NON_MAINS)]
+    tBitwiseOR           reduce using rule 86 (M_NON_MAINS)
+    tBitwiseOR           [reduce using rule 87 (M_NON_MAINS)]
+    tHat                 reduce using rule 86 (M_NON_MAINS)
+    tHat                 [reduce using rule 87 (M_NON_MAINS)]
+    tLeftSquareBracket   reduce using rule 86 (M_NON_MAINS)
+    tLeftSquareBracket   [reduce using rule 87 (M_NON_MAINS)]
+    tRightSquareBracket  reduce using rule 86 (M_NON_MAINS)
+    tRightSquareBracket  [reduce using rule 87 (M_NON_MAINS)]
+    tLeftBracket         reduce using rule 86 (M_NON_MAINS)
+    tLeftBracket         [reduce using rule 87 (M_NON_MAINS)]
+    tRightBracket        reduce using rule 86 (M_NON_MAINS)
+    tRightBracket        [reduce using rule 87 (M_NON_MAINS)]
+    tDot                 reduce using rule 86 (M_NON_MAINS)
+    tDot                 [reduce using rule 87 (M_NON_MAINS)]
+    tBitwiseAND          reduce using rule 86 (M_NON_MAINS)
+    tBitwiseAND          [reduce using rule 87 (M_NON_MAINS)]
+    tMultiply            reduce using rule 86 (M_NON_MAINS)
+    tMultiply            [reduce using rule 87 (M_NON_MAINS)]
+    tAdd                 reduce using rule 86 (M_NON_MAINS)
+    tAdd                 [reduce using rule 87 (M_NON_MAINS)]
+    tSubtract            reduce using rule 86 (M_NON_MAINS)
+    tSubtract            [reduce using rule 87 (M_NON_MAINS)]
+    tTilde               reduce using rule 86 (M_NON_MAINS)
+    tTilde               [reduce using rule 87 (M_NON_MAINS)]
+    tNot                 reduce using rule 86 (M_NON_MAINS)
+    tNot                 [reduce using rule 87 (M_NON_MAINS)]
+    tDivide              reduce using rule 86 (M_NON_MAINS)
+    tDivide              [reduce using rule 87 (M_NON_MAINS)]
+    tModulo              reduce using rule 86 (M_NON_MAINS)
+    tModulo              [reduce using rule 87 (M_NON_MAINS)]
+    tStringLit           reduce using rule 86 (M_NON_MAINS)
+    tStringLit           [reduce using rule 87 (M_NON_MAINS)]
+    tIdentifier          reduce using rule 86 (M_NON_MAINS)
+    tIdentifier          [reduce using rule 87 (M_NON_MAINS)]
+    tIntegerConst        reduce using rule 86 (M_NON_MAINS)
+    tIntegerConst        [reduce using rule 87 (M_NON_MAINS)]
+    tFloatConst          reduce using rule 86 (M_NON_MAINS)
+    tFloatConst          [reduce using rule 87 (M_NON_MAINS)]
+    tCharConst           reduce using rule 86 (M_NON_MAINS)
+    tCharConst           [reduce using rule 87 (M_NON_MAINS)]
+    tInvalid             reduce using rule 86 (M_NON_MAINS)
+    tInvalid             [reduce using rule 87 (M_NON_MAINS)]
+    $default             reduce using rule 86 (M_NON_MAINS)
+
+
+State 146
+
+  111 IF: tIf tLeftBracket M_NON_MAINS STATEMENT .
+
+    $default  reduce using rule 111 (IF)
+
+
+State 147
+
+  109 WHILE: tWhile tLeftBracket M_NON_MAINS STATEMENT .
+
+    $default  reduce using rule 109 (WHILE)

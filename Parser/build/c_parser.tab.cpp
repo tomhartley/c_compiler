@@ -96,7 +96,9 @@ extern int yydebug;
 #line 1 "src/c_parser.y" /* yacc.c:355  */
 
   #include <stdio.h>
-  
+  #include <vector>
+  #include <string>
+  #include <sstream>
   extern "C" int yylex(void);
   void yyerror(const char *);
   
@@ -104,10 +106,9 @@ extern int yydebug;
   #include "../src/c_tokens.hpp"
   extern Value *g_ast; // A way of getting the AST out
   
-  //! This is to fix problems when generating C++
+  //! This is to fix problems when generating C++  
 
-
-#line 111 "build/c_parser.tab.cpp" /* yacc.c:355  */
+#line 112 "build/c_parser.tab.cpp" /* yacc.c:355  */
 
 /* Token type.  */
 #ifndef YYTOKENTYPE
@@ -206,7 +207,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 15 "src/c_parser.y" /* yacc.c:355  */
+#line 16 "src/c_parser.y" /* yacc.c:355  */
 
   int intConst;
   int keyword;
@@ -214,7 +215,7 @@ union YYSTYPE
   int theoperator;
   string* amazing;
 
-#line 218 "build/c_parser.tab.cpp" /* yacc.c:355  */
+#line 219 "build/c_parser.tab.cpp" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -230,7 +231,7 @@ int yyparse (void);
 #endif /* !YY_YY_BUILD_C_PARSER_TAB_HPP_INCLUDED  */
 
 /* Copy the second part of user declarations.  */
-#line 36 "src/c_parser.y" /* yacc.c:358  */
+#line 37 "src/c_parser.y" /* yacc.c:358  */
 
 struct pair_t *root=0;
 
@@ -238,7 +239,7 @@ void yyerror(const char* msg) {
      fprintf(stderr, "%s\n", msg);
 }
 
-#line 242 "build/c_parser.tab.cpp" /* yacc.c:358  */
+#line 243 "build/c_parser.tab.cpp" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -544,18 +545,18 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    46,    46,    47,    48,    49,    50,    51,    52,    53,
-      54,    55,    56,    57,    58,    59,    60,    61,    62,    63,
-      64,    65,    66,    67,    68,    69,    70,    71,    72,    73,
-      74,    75,    76,    77,    78,    79,    80,    81,    82,    83,
-      84,    85,    86,    87,    88,    89,    90,    91,    92,    93,
-      94,    95,    96,    97,    98,    99,   100,   101,   102,   103,
-     104,   105,   106,   107,   108,   109,   110,   111,   112,   113,
-     114,   115,   116,   117,   118,   119,   120,   121,   122,   123,
-     124,   125,   126,   129,   130,   135,   136,   141,   142,   145,
-     146,   147,   148,   149,   150,   151,   153,   154,   156,   157,
-     159,   160,   163,   165,   166,   168,   169,   171,   172,   174,
-     177,   178,   179,   180,   182,   184,   185,   186,   187,   189
+       0,    47,    47,    48,    49,    50,    51,    52,    53,    54,
+      55,    56,    57,    58,    59,    60,    61,    62,    63,    64,
+      65,    66,    67,    68,    69,    70,    71,    72,    73,    74,
+      75,    76,    77,    78,    79,    80,    81,    82,    83,    84,
+      85,    86,    87,    88,    89,    90,    91,    92,    93,    94,
+      95,    96,    97,    98,    99,   100,   101,   102,   103,   104,
+     105,   106,   107,   108,   109,   110,   111,   112,   113,   114,
+     115,   116,   117,   118,   119,   120,   121,   122,   123,   124,
+     125,   126,   127,   130,   131,   136,   137,   142,   143,   146,
+     147,   148,   149,   150,   151,   152,   154,   155,   157,   158,
+     160,   161,   164,   166,   167,   178,   179,   181,   182,   184,
+     197,   198,   199,   200,   202,   204,   205,   206,   207,   209
 };
 #endif
 
@@ -1562,157 +1563,176 @@ yyreduce:
   switch (yyn)
     {
         case 89:
-#line 145 "src/c_parser.y" /* yacc.c:1661  */
+#line 146 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = (yyvsp[0].amazing);}
-#line 1568 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1569 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 90:
-#line 146 "src/c_parser.y" /* yacc.c:1661  */
+#line 147 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = (yyvsp[0].amazing);}
-#line 1574 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1575 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 91:
-#line 147 "src/c_parser.y" /* yacc.c:1661  */
+#line 148 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = (yyvsp[0].amazing);}
-#line 1580 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1581 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 92:
-#line 148 "src/c_parser.y" /* yacc.c:1661  */
+#line 149 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = (yyvsp[0].amazing);}
-#line 1586 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1587 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 93:
-#line 149 "src/c_parser.y" /* yacc.c:1661  */
+#line 150 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = (yyvsp[0].amazing);}
-#line 1592 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1593 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 94:
-#line 150 "src/c_parser.y" /* yacc.c:1661  */
+#line 151 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = new string("");}
-#line 1598 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1599 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 95:
-#line 151 "src/c_parser.y" /* yacc.c:1661  */
+#line 152 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = (yyvsp[0].amazing);}
-#line 1604 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1605 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 96:
-#line 153 "src/c_parser.y" /* yacc.c:1661  */
+#line 154 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = new string(string("VARIABLE: ") + (yyvsp[0].identifier) + "\n");}
-#line 1610 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1611 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 97:
-#line 154 "src/c_parser.y" /* yacc.c:1661  */
+#line 155 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = new string (*(yyval.amazing) + "VARIABLE: " + (yyvsp[0].identifier) + "\n");}
-#line 1616 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1617 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 98:
-#line 156 "src/c_parser.y" /* yacc.c:1661  */
+#line 157 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = (yyvsp[-1].amazing);}
-#line 1622 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1623 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 99:
-#line 157 "src/c_parser.y" /* yacc.c:1661  */
+#line 158 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = (yyvsp[-3].amazing);}
-#line 1628 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1629 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 100:
-#line 159 "src/c_parser.y" /* yacc.c:1661  */
+#line 160 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = (yyvsp[0].amazing);}
-#line 1634 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1635 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 101:
-#line 160 "src/c_parser.y" /* yacc.c:1661  */
+#line 161 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = new string(*(yyvsp[-1].amazing) + *(yyvsp[0].amazing));}
-#line 1640 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1641 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 103:
-#line 165 "src/c_parser.y" /* yacc.c:1661  */
+#line 166 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = new string("SCOPE \n");}
-#line 1646 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1647 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 104:
-#line 166 "src/c_parser.y" /* yacc.c:1661  */
-    {(yyval.amazing) = new string("SCOPE \n" + *(yyvsp[-1].amazing));}
-#line 1652 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 167 "src/c_parser.y" /* yacc.c:1661  */
+    {      string result;
+
+                                                                istringstream iss(*(yyvsp[-1].amazing));
+      
+                                                                  for (string line; getline(iss, line); )
+                                                                  {
+                                                                      result += "    " + line + "\n";
+                                                                  }
+                                                                          
+                                                                (yyval.amazing) = new string("SCOPE \n" + result);}
+#line 1662 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 105:
-#line 168 "src/c_parser.y" /* yacc.c:1661  */
+#line 178 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = new string("");}
-#line 1658 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1668 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 106:
-#line 169 "src/c_parser.y" /* yacc.c:1661  */
+#line 179 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = (yyvsp[-1].amazing);}
-#line 1664 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1674 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 107:
-#line 171 "src/c_parser.y" /* yacc.c:1661  */
+#line 181 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = new string(string("PARAMETER: ") + (yyvsp[0].identifier) + "\n");}
-#line 1670 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1680 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 108:
-#line 172 "src/c_parser.y" /* yacc.c:1661  */
+#line 182 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = new string (*(yyval.amazing) + "PARAMETER: " + (yyvsp[0].identifier) + "\n");}
-#line 1676 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1686 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 109:
-#line 174 "src/c_parser.y" /* yacc.c:1661  */
-    {cout << "FUNCTION: " << (yyvsp[-2].identifier) << endl << *(yyvsp[-1].amazing) << *(yyvsp[0].amazing);}
-#line 1682 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 184 "src/c_parser.y" /* yacc.c:1661  */
+    {
+    string result;
+
+    istringstream iss(*(yyvsp[-1].amazing));
+    
+    for (string line; getline(iss, line); )
+    {
+        result += "    " + line + "\n";
+    }
+    
+    cout << "FUNCTION: " << (yyvsp[-2].identifier) << endl << result << *(yyvsp[0].amazing);}
+#line 1702 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 110:
-#line 177 "src/c_parser.y" /* yacc.c:1661  */
+#line 197 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = (yyvsp[0].amazing);}
-#line 1688 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1708 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 111:
-#line 178 "src/c_parser.y" /* yacc.c:1661  */
+#line 198 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = (yyvsp[0].amazing);}
-#line 1694 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1714 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 112:
-#line 179 "src/c_parser.y" /* yacc.c:1661  */
+#line 199 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = (yyvsp[0].amazing);}
-#line 1700 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1720 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 113:
-#line 180 "src/c_parser.y" /* yacc.c:1661  */
+#line 200 "src/c_parser.y" /* yacc.c:1661  */
     {(yyval.amazing) = new string(*(yyvsp[-2].amazing) + *(yyvsp[0].amazing));}
-#line 1706 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1726 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
   case 114:
-#line 182 "src/c_parser.y" /* yacc.c:1661  */
+#line 202 "src/c_parser.y" /* yacc.c:1661  */
     {cout << *(yyvsp[0].amazing);}
-#line 1712 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1732 "build/c_parser.tab.cpp" /* yacc.c:1661  */
     break;
 
 
-#line 1716 "build/c_parser.tab.cpp" /* yacc.c:1661  */
+#line 1736 "build/c_parser.tab.cpp" /* yacc.c:1661  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1940,7 +1960,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 191 "src/c_parser.y" /* yacc.c:1906  */
+#line 211 "src/c_parser.y" /* yacc.c:1906  */
 
 
 
