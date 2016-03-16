@@ -9,6 +9,9 @@
   
   #include "c_ast.hpp"
   #include "c_tokens.hpp"
+  #include "c_ast_expr_binary.hpp"
+  #include "c_ast_expr_constant.hpp"
+  #include "c_ast_expr_identifier.hpp"
   using namespace std;
   //extern Value *g_ast; // A way of getting the AST out
   
@@ -19,7 +22,8 @@
 	RawInteger* rIntConst;
 	RawKeyword* rKeyword;
 	RawIdentifier* rIdentifier;
-	RawOperator *rOperator;
+	RawOperator* rOperator;
+	ASTExpression* expr;
 	int other;
 }
 
@@ -34,7 +38,11 @@
 
 %token <other> tStringLit tFloatConst tCharConst tInvalid
 
-%start expression
+%type <expr> constant primaryexpression postfixexpression unaryexpression castexpression additiveexpression shiftexpression relationalexpression equalityexpression ANDexpression exclusiveORexpression inclusiveORexpression logicalANDexpression logicalORexpression conditionalexpression assignmentexpression expression constantexpression multiplicativeexpression
+
+%type <rOperator> assignmentoperator unaryoperator
+
+%start toplevel
 
 %{
 struct pair_t *root=0;
@@ -47,38 +55,38 @@ void yyerror(const char* msg) {
 %%
 //**************3.1.3**************
 //also not really spec but yolo
-constant				: tIntegerConst
+constant                : tIntegerConst {$$ = new ASTConstantExpression($1);}
 
 //**************3.3.1**************
 
-primaryexpression		: tIdentifier
+primaryexpression       : tIdentifier                                        {$$ = new ASTIdentifierExpression($1);}
 						| constant
-//						| stringliteral
-						| tLeftBracket expression tRightBracket
+//                        | stringliteral                                        {;}
+						| tLeftBracket expression tRightBracket                {$$=$2;}
 
 //**************3.3.2**************
-postfixexpression		: primaryexpression
-						| postfixexpression tLeftSquareBracket expression tRightSquareBracket
-						| postfixexpression tLeftBracket argumentexpressionlist tRightBracket
-						| postfixexpression tLeftBracket tRightBracket
-						| postfixexpression tDot tIdentifier
-						| postfixexpression tArrow tIdentifier
-						| postfixexpression tIncrement
-						| postfixexpression tDecrement
+postfixexpression       : primaryexpression                                                         {;}
+						| postfixexpression tLeftSquareBracket expression tRightSquareBracket       {;}
+						| postfixexpression tLeftBracket argumentexpressionlist tRightBracket       {;}
+						| postfixexpression tLeftBracket tRightBracket                              {;}
+						| postfixexpression tDot tIdentifier                                        {;}
+						| postfixexpression tArrow tIdentifier                                      {;}
+						| postfixexpression tIncrement                                              {;}
+						| postfixexpression tDecrement                                              {;}
 
 argumentexpressionlist: assignmentexpression
 						| argumentexpressionlist tComma assignmentexpression
 
 //**************3.3.3**************
 
-unaryexpression		: postfixexpression
-						| tIncrement unaryexpression
-						| tDecrement unaryexpression
-						| unaryoperator castexpression
-						| tSizeof unaryexpression
-						| tSizeof tLeftBracket typename tRightBracket
+unaryexpression         : postfixexpression                                                          {;}
+						| tIncrement unaryexpression                                                {;}
+						| tDecrement unaryexpression                                                {;}
+						| unaryoperator castexpression                                              {;}
+						| tSizeof unaryexpression                                                   {;}
+						| tSizeof tLeftBracket typename tRightBracket                               {;}
 
-unaryoperator			: tBitwiseAND
+unaryoperator           : tBitwiseAND
 						| tMultiply
 						| tAdd
 						| tSubtract
@@ -87,76 +95,95 @@ unaryoperator			: tBitwiseAND
 
 //************3.3.4****************
 
-castexpression			: unaryexpression
-						| tLeftBracket typename tRightBracket castexpression
+castexpression            : unaryexpression
+| tLeftBracket typename tRightBracket castexpression                        {;}
 
 //************3.3.5****************
 
 multiplicativeexpression	: castexpression
 							| multiplicativeexpression tMultiply castexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
 							| multiplicativeexpression tDivide castexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
 							| multiplicativeexpression tModulo castexpression
-
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
 //************3.3.6****************
 
 additiveexpression		: multiplicativeexpression
 						| additiveexpression tAdd multiplicativeexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
 						| additiveexpression tSubtract multiplicativeexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
 
 //************3.3.7**************
 
 shiftexpression		: additiveexpression
 						| shiftexpression tShiftLeft additiveexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
 						| shiftexpression tShiftRight additiveexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
 
 //************3.3.8**************
 
 relationalexpression	: shiftexpression
 						| relationalexpression tLessThan shiftexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
 						| relationalexpression tGreaterThan shiftexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
 						| relationalexpression tLessThanEquals shiftexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
 						| relationalexpression tGreaterThanEquals shiftexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
 
 //************3.3.9**************
 
 equalityexpression		: relationalexpression
 						| equalityexpression tEquality relationalexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
 						| equalityexpression tNotEquality relationalexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
 
 //************3.3.10**************
 
 ANDexpression			: equalityexpression
 						| ANDexpression tBitwiseAND equalityexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
 
 //************3.3.11**************
 
 exclusiveORexpression : ANDexpression
 						| exclusiveORexpression tHat ANDexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
 
 //************3.3.12**************
 
 inclusiveORexpression : exclusiveORexpression
 						| inclusiveORexpression tBitwiseOR exclusiveORexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
 
 //************3.3.13**************
 
 logicalANDexpression	: inclusiveORexpression
 						| logicalANDexpression tBooleanAND inclusiveORexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
 
 //************3.3.14**************
 
 logicalORexpression	: logicalANDexpression
 						| logicalORexpression tBooleanOR logicalANDexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
 
 //************3.3.15**************
 
 conditionalexpression	: logicalORexpression
 						| logicalORexpression tLeftTernary expression tRightTernary conditionalexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
 
 //************3.3.16**************
 
 assignmentexpression	: conditionalexpression
 						| unaryexpression assignmentoperator assignmentexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
 
 assignmentoperator		: tAssignment
 						| tAssignLeftShift
@@ -172,8 +199,8 @@ assignmentoperator		: tAssignment
 
 //************3.3.17**************
 
-expression				: assignmentexpression							{cout << "amazing" << endl;}
-						| expression tComma assignmentexpression
+expression				: assignmentexpression
+						| expression tComma assignmentexpression		;
 
 //************3.4****************
 
@@ -183,6 +210,7 @@ constantexpression		: conditionalexpression
 
 typename				: tInt
 
+toplevel				: expression									{$1->prettyprint(cout);}
 //********************************
 
 

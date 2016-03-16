@@ -5,6 +5,8 @@
 #include <map>
 #include <stdexcept>
 #include <iostream>
+#include "c_tokens.hpp"
+#include <ostream>
 
 using namespace std;
 
@@ -12,35 +14,32 @@ class ASTNode {
 public:
 	int lineNum;
 	string sourceFile;
-	string prettyprint();
-};
-
-class ASTType : ASTNode {
 	
+	void virtual prettyprint(ostream &stream, string lp) = 0;
+	void prettyprint(ostream &stream);
 };
 
-class ASTExpression : ASTNode{
-	ASTType type;
+class ASTType : public ASTNode {
+	//currently always just int
 };
 
-class ASTBinaryExpression : ASTExpression {
-	
+class ASTExpression : public ASTNode {
+public:
+	ASTType * type;
 };
 
-class ASTConstantExpression : ASTExpression {
-	
+
+
+class ASTTernaryExpression : public ASTExpression {
+public:
+	ASTExpression *lhs;
+	ASTExpression * mhs;
+	ASTExpression * rhs;
 };
 
-class ASTTernaryExpression : ASTExpression {
-	
-};
-
-class ASTIdentifierExpression : ASTExpression {
-	
-};
-
-class ASTPostExpression : ASTExpression {
-	
+class ASTPostExpression : public ASTExpression {
+public:
+	string * postop;
 };
 
 

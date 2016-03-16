@@ -28,6 +28,7 @@ FLOAT_CONST             ({FRAC_CONST}{EXP_PART}?[flFL]?|{DIGIT}+{EXP_PART}[flFL]
 #include <string>
 #include <algorithm>
 #include "c_tokens.hpp"
+#include "c_ast.hpp"
 #include "y.tab.h" //previously "c_parser.tab.hpp"
 
 #pragma clang diagnostic ignored "-Wunused-function"
