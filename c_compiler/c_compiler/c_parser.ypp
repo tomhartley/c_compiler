@@ -1,0 +1,189 @@
+%{
+  #include <stdio.h>
+  #include <vector>
+  #include <string>
+  #include <sstream>
+  #pragma clang diagnostic ignored "Weverything"
+  extern "C" int yylex(void);
+  void yyerror(const char *);
+  
+  #include "c_ast.hpp"
+  #include "c_tokens.hpp"
+  using namespace std;
+  //extern Value *g_ast; // A way of getting the AST out
+  
+  //! This is to fix problems when generating C++  
+%}
+
+%union {
+	RawInteger* rIntConst;
+	RawKeyword* rKeyword;
+	RawIdentifier* rIdentifier;
+	RawOperator *rOperator;
+	int other;
+}
+
+
+%token <rIntConst> tIntegerConst
+
+%token <rKeyword> tAuto tDouble tInt tStruct tBreak tElse tLong tSwitch tCase tEnum tRegister tTypedef tChar tExtern tReturn tUnion tConst tFloat tShort tUnsigned tContinue tFor tSigned tVoid tDefault tGoto tVolatile tDo tIf tStatic tWhile
+    
+%token <rIdentifier> tIdentifier
+
+%token <rOperator> tSizeof tAssignLeftShift tAssignRightShift tEllipsis tAssignAND tAssignXOR tAssignOR tAssignMultiply tAssignDivide tAssignModulo tAssignAdd tAssignSubtract tShiftLeft tShiftRight tLessThanEquals tGreaterThanEquals tEquality tNotEquality tBooleanAND tBooleanOR tArrow tIncrement tDecrement tScopeBegin tLessThan tGreaterThan tScopeEnd tSemicolon tComma tLeftTernary tRightTernary tAssignment tBitwiseOR tHat tLeftSquareBracket tRightSquareBracket tLeftBracket tRightBracket tDot tBitwiseAND tMultiply tAdd tSubtract tTilde tNot tDivide tModulo
+
+%token <other> tStringLit tFloatConst tCharConst tInvalid
+
+%start expression
+
+%{
+struct pair_t *root=0;
+
+void yyerror(const char* msg) {
+     fprintf(stderr, "%s\n", msg);
+}
+%}
+
+%%
+//**************3.1.3**************
+//also not really spec but yolo
+constant				: tIntegerConst
+
+//**************3.3.1**************
+
+primaryexpression		: tIdentifier
+						| constant
+//						| stringliteral
+						| tLeftBracket expression tRightBracket
+
+//**************3.3.2**************
+postfixexpression		: primaryexpression
+						| postfixexpression tLeftSquareBracket expression tRightSquareBracket
+						| postfixexpression tLeftBracket argumentexpressionlist tRightBracket
+						| postfixexpression tLeftBracket tRightBracket
+						| postfixexpression tDot tIdentifier
+						| postfixexpression tArrow tIdentifier
+						| postfixexpression tIncrement
+						| postfixexpression tDecrement
+
+argumentexpressionlist: assignmentexpression
+						| argumentexpressionlist tComma assignmentexpression
+
+//**************3.3.3**************
+
+unaryexpression		: postfixexpression
+						| tIncrement unaryexpression
+						| tDecrement unaryexpression
+						| unaryoperator castexpression
+						| tSizeof unaryexpression
+						| tSizeof tLeftBracket typename tRightBracket
+
+unaryoperator			: tBitwiseAND
+						| tMultiply
+						| tAdd
+						| tSubtract
+						| tTilde
+						| tNot
+
+//************3.3.4****************
+
+castexpression			: unaryexpression
+						| tLeftBracket typename tRightBracket castexpression
+
+//************3.3.5****************
+
+multiplicativeexpression	: castexpression
+							| multiplicativeexpression tMultiply castexpression
+							| multiplicativeexpression tDivide castexpression
+							| multiplicativeexpression tModulo castexpression
+
+//************3.3.6****************
+
+additiveexpression		: multiplicativeexpression
+						| additiveexpression tAdd multiplicativeexpression
+						| additiveexpression tSubtract multiplicativeexpression
+
+//************3.3.7**************
+
+shiftexpression		: additiveexpression
+						| shiftexpression tShiftLeft additiveexpression
+						| shiftexpression tShiftRight additiveexpression
+
+//************3.3.8**************
+
+relationalexpression	: shiftexpression
+						| relationalexpression tLessThan shiftexpression
+						| relationalexpression tGreaterThan shiftexpression
+						| relationalexpression tLessThanEquals shiftexpression
+						| relationalexpression tGreaterThanEquals shiftexpression
+
+//************3.3.9**************
+
+equalityexpression		: relationalexpression
+						| equalityexpression tEquality relationalexpression
+						| equalityexpression tNotEquality relationalexpression
+
+//************3.3.10**************
+
+ANDexpression			: equalityexpression
+						| ANDexpression tBitwiseAND equalityexpression
+
+//************3.3.11**************
+
+exclusiveORexpression : ANDexpression
+						| exclusiveORexpression tHat ANDexpression
+
+//************3.3.12**************
+
+inclusiveORexpression : exclusiveORexpression
+						| inclusiveORexpression tBitwiseOR exclusiveORexpression
+
+//************3.3.13**************
+
+logicalANDexpression	: inclusiveORexpression
+						| logicalANDexpression tBooleanAND inclusiveORexpression
+
+//************3.3.14**************
+
+logicalORexpression	: logicalANDexpression
+						| logicalORexpression tBooleanOR logicalANDexpression
+
+//************3.3.15**************
+
+conditionalexpression	: logicalORexpression
+						| logicalORexpression tLeftTernary expression tRightTernary conditionalexpression
+
+//************3.3.16**************
+
+assignmentexpression	: conditionalexpression
+						| unaryexpression assignmentoperator assignmentexpression
+
+assignmentoperator		: tAssignment
+						| tAssignLeftShift
+						| tAssignRightShift
+						| tAssignAND
+						| tAssignXOR
+						| tAssignOR
+						| tAssignMultiply
+						| tAssignDivide
+						| tAssignModulo
+						| tAssignSubtract
+						| tAssignAdd
+
+//************3.3.17**************
+
+expression				: assignmentexpression							{cout << "amazing" << endl;}
+						| expression tComma assignmentexpression
+
+//************3.4****************
+
+constantexpression		: conditionalexpression
+
+//Not-actually-spec-just-a-hack:
+
+typename				: tInt
+
+//********************************
+
+
+%%
