@@ -7,6 +7,7 @@
 //
 
 #include "c_ast_expr_binary.hpp"
+#include "c_ast_expr_identifier.hpp"
 
 ASTBinaryExpression::ASTBinaryExpression(RawOperator* op, ASTExpression* newlhs, ASTExpression* newrhs) {
 	getData(op);
@@ -62,3 +63,43 @@ void ASTBinaryExpression::prettyprint(ostream &stream,string lp) {
 	rhs->prettyprint(stream, lp+"\t");
 	return;
 }
+
+void ASTBinaryExpression::codegen(CContext *context) {
+	lhs->codegen(context);
+	gen::pushStack(context, 2);
+	rhs->codegen(context);
+	gen::popStack(context, 3); //now the results are in reg 2 and reg 3
+	switch (optype) {
+		case ASTBinaryExpressionTypeAdd:
+			gen::regregreg(context, "ADDU", 2, 2, 3);
+			break;
+		case ASTBinaryExpressionTypeSubtract:
+			gen::regregreg(context, "SUBU", 2, 2, 3);
+			break;
+		case ASTBinaryExpressionTypeBitwiseAND:
+			gen::regregreg(context, "AND", 2, 2, 3);
+			break;
+		case ASTBinaryExpressionTypeBitwiseOR:
+			gen::regregreg(context, "OR", 2, 2, 3);
+			break;
+		case ASTBinaryExpressionTypeBitwiseXOR:
+			gen::regregreg(context, "XOR", 2, 2, 3);
+			break;
+		case ASTBinaryExpressionTypeRightShift:
+			gen::regregreg(context, "SRA", 2, 2, 3);
+			break;
+		case ASTBinaryExpressionTypeLeftShift:
+			gen::regregreg(context, "SLL", 2, 2, 3);
+			break;
+		case ASTBinaryExpressionTypeBooleanGreaterThan:
+			gen::regregreg(context, "SLT", 2, 2, 3);
+			break;
+		case ASTBinaryExpressionTypeBooleanLessThanEquals:
+			gen::regregreg(context, "SLT", 2, 3, 2);
+			break;
+		default:
+			cout << ";HMMMMMMMMM PROBABLY WON'T WORK " << endl;
+			break;
+	}
+}
+

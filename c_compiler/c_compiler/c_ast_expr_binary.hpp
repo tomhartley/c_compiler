@@ -10,8 +10,8 @@
 #define c_ast_expr_binary_hpp
 
 #include <stdio.h>
-#include "c_ast.hpp"
-#include "c_tokens.hpp"
+
+#include "predefs.hpp"
 #include "y.tab.h"
 
 typedef enum {
@@ -53,16 +53,19 @@ typedef enum {
 
 class ASTBinaryExpression : public ASTExpression {
 public:
+	ASTBinaryExpression(RawOperator* op, ASTExpression* lhs, ASTExpression* rhs);
+	void prettyprint(ostream &stream, string lp);
+	void codegen(CContext *context);
+private:
+	void getData(RawOperator *op);
 	ASTExpression *lhs;
 	ASTExpression *rhs;
 	ASTBinaryExpressionType optype;
 	RawOperator *rawOp;
 	bool isAssignType;
-	ASTBinaryExpression(RawOperator* op, ASTExpression* lhs, ASTExpression* rhs);
-	void prettyprint(ostream &stream, string lp);
-private:
-	void getData(RawOperator *op);
 };
 
 
 #endif /* c_ast_expr_binary_hpp */
+
+
