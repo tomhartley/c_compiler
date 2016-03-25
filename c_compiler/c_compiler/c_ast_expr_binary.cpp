@@ -38,7 +38,7 @@ void ASTBinaryExpression::getData(RawOperator *op) {
 	opmap[">="] = make_pair(ASTBinaryExpressionTypeBooleanGreaterThanEquals, false);
 	opmap["<="] = make_pair(ASTBinaryExpressionTypeBooleanLessThanEquals, false);
 
-	opmap["="] = make_pair(ASTBinaryExpressionTypeAssign, true);
+	//opmap["="] = make_pair(ASTBinaryExpressionTypeAssign, true);
 	opmap["+="] = make_pair(ASTBinaryExpressionTypeAdd, true);
 	opmap["-="] = make_pair(ASTBinaryExpressionTypeSubtract, true);
 	opmap["*="] = make_pair(ASTBinaryExpressionTypeMultiply, true);

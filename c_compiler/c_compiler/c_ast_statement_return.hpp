@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "c_ast.hpp"
 #include "c_ast_statement.hpp"
+#include "c_ast_expr.hpp"
 
 class ASTStatementReturn : public ASTStatement {
 public:

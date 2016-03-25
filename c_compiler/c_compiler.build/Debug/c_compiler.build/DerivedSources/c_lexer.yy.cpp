@@ -1,6 +1,6 @@
-#line 2 "/Users/tom/Documents/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/DerivedSources/c_lexer.yy.cpp"
+#line 2 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/DerivedSources/c_lexer.yy.cpp"
 
-#line 4 "/Users/tom/Documents/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/DerivedSources/c_lexer.yy.cpp"
+#line 4 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/DerivedSources/c_lexer.yy.cpp"
 
 #define  YY_INT_ALIGNED short int
 
@@ -652,8 +652,8 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
-#line 23 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 1 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 23 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 //extern "C" int yylex();
 
 
@@ -695,7 +695,7 @@ string strUp(string str) {
     return str;
 }
 
-#line 699 "/Users/tom/Documents/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/DerivedSources/c_lexer.yy.cpp"
+#line 699 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/DerivedSources/c_lexer.yy.cpp"
 
 #define INITIAL 0
 
@@ -877,10 +877,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 65 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 65 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 
 
-#line 884 "/Users/tom/Documents/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/DerivedSources/c_lexer.yy.cpp"
+#line 884 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/DerivedSources/c_lexer.yy.cpp"
 
 	if ( !(yy_init) )
 		{
@@ -965,440 +965,440 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 67 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 67 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 ;
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 68 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 68 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {curLine+=1;
                                                  curSourceLine+=1;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 70 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 70 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {return tStringLit;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 72 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 72 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("auto"); return tAuto;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 73 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 73 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("double"); return tDouble;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 74 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 74 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("int"); return tInt;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 75 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 75 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("struct"); return tStruct;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 76 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 76 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("break"); return tBreak;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 77 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 77 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("else"); return tElse;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 78 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 78 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("long"); return tLong;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 79 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 79 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("switch"); return tSwitch;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 80 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 80 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("case"); return tCase;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 81 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 81 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("enum"); return tEnum;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 82 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 82 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("register"); return tRegister;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 83 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 83 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("typedef"); return tTypedef;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 84 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 84 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("char"); return tChar;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 85 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 85 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("extern"); return tExtern;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 86 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 86 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("return"); return tReturn;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 87 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 87 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("union"); return tUnion;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 88 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 88 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("const"); return tConst;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 89 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 89 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("float"); return tFloat;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 90 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 90 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("short"); return tShort;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 91 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 91 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("unsigned"); return tUnsigned;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 92 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 92 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("continue"); return tContinue;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 93 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 93 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("for"); return tFor;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 94 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 94 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("signed"); return tSigned;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 95 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 95 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("void"); return tVoid;}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 96 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 96 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("default"); return tDefault;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 97 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 97 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("goto"); return tGoto;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 98 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 98 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("volatile"); return tVolatile;}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 99 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 99 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("do"); return tDo;}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 100 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 100 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("if"); return tIf;}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 101 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 101 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("static"); return tStatic;}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 102 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 102 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {keywordAction("while"); return tWhile;}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 105 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 105 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tSizeof"); return tSizeof;}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 106 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 106 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tAssignLeftShift"); return tAssignLeftShift;}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 107 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 107 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tAssignRightShift"); return tAssignRightShift;}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 108 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 108 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tEllipsis"); return tEllipsis;}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 109 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 109 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tAssignAND"); return tAssignAND;}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 110 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 110 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tAssignXOR"); return tAssignXOR;}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 111 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 111 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tAssignOR"); return tAssignOR;}
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 112 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 112 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tAssignMultiply"); return tAssignMultiply;}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 113 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 113 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tAssignDivide"); return tAssignDivide;}
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 114 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 114 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tAssignModulo"); return tAssignModulo;}
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 115 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 115 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tAssignAdd"); return tAssignAdd;}
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 116 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 116 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tAssignSubtract"); return tAssignSubtract;}
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 117 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 117 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tShiftLeft"); return tShiftLeft;}
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 118 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 118 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tShiftRight"); return tShiftRight;}
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 119 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 119 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tLessThanEquals"); return tLessThanEquals;}
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 120 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 120 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tGreaterThanEquals"); return tGreaterThanEquals;}
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 121 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 121 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tEquality"); return tEquality;}
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 122 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 122 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tNotEquality"); return tNotEquality;}
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 123 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 123 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tBooleanAND"); return tBooleanAND;}
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 124 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 124 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tBooleanOR"); return tBooleanOR;}
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 125 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 125 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tArrow"); return tArrow;}
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 126 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 126 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tIncrement"); return tIncrement;}
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 127 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 127 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tDecrement"); return tDecrement;}
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 128 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 128 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tScopeBegin"); return tScopeBegin;}
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 129 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 129 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tLessThan"); return tLessThan;}
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 130 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 130 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tGreaterThan"); return tGreaterThan;}
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 131 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 131 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tScopeEnd"); return tScopeEnd;}
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 132 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 132 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tSemicolon"); return tSemicolon;}
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 133 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 133 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tComma"); return tComma;}
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 134 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 134 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tLeftTernary"); return tLeftTernary;}
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 135 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 135 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tRightTernary"); return tRightTernary;}
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 136 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 136 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tAssignment"); return tAssignment;}
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 137 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 137 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tBitwiseOR"); return tBitwiseOR;}
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 138 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 138 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tHat"); return tHat;}
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 139 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 139 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tLeftSquareBracket"); return tLeftSquareBracket;}
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 140 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 140 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tRightSquareBracket"); return tRightSquareBracket;}
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 141 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 141 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tLeftBracket"); return tLeftBracket;}
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 142 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 142 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tRightBracket"); return tRightBracket;}
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 143 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 143 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tDot"); return tDot;}
 	YY_BREAK
 case 74:
 YY_RULE_SETUP
-#line 144 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 144 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tBitwiseAND"); return tBitwiseAND;}
 	YY_BREAK
 case 75:
 YY_RULE_SETUP
-#line 145 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 145 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tMultiply"); return tMultiply;}
 	YY_BREAK
 case 76:
 YY_RULE_SETUP
-#line 146 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 146 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tAdd"); return tAdd;}
 	YY_BREAK
 case 77:
 YY_RULE_SETUP
-#line 147 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 147 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tSubtract"); return tSubtract;}
 	YY_BREAK
 case 78:
 YY_RULE_SETUP
-#line 148 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 148 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tTilde"); return tTilde;}
 	YY_BREAK
 case 79:
 YY_RULE_SETUP
-#line 149 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 149 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tNot"); return tNot;}
 	YY_BREAK
 case 80:
 YY_RULE_SETUP
-#line 150 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 150 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tDivide"); return tDivide;}
 	YY_BREAK
 case 81:
 YY_RULE_SETUP
-#line 151 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 151 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {operatorAction("tModulo"); return tModulo;}
 	YY_BREAK
 case 82:
 YY_RULE_SETUP
-#line 154 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 154 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {yylval.rIdentifier = new RawIdentifier(yytext); return tIdentifier;}
 	YY_BREAK
 case 83:
 YY_RULE_SETUP
-#line 155 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 155 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {yylval.rIntConst = new RawInteger(yytext); yylval.rIntConst->setDetails(curSourceLine, curFile.c_str()); return tIntegerConst;}
 	YY_BREAK
 case 84:
 YY_RULE_SETUP
-#line 156 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 156 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {return tFloatConst;}
 	YY_BREAK
 case 85:
 YY_RULE_SETUP
-#line 157 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 157 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {return tCharConst;}
 	YY_BREAK
 case 86:
 /* rule 86 can match eol */
 YY_RULE_SETUP
-#line 158 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 158 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {return tInvalid;}
 	YY_BREAK
 case 87:
 YY_RULE_SETUP
-#line 159 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 159 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {stringstream sstr(yytext+2);
                                                  sstr >> curLine;
                                                  curLine-=1;
@@ -1407,15 +1407,15 @@ YY_RULE_SETUP
 	YY_BREAK
 case 88:
 YY_RULE_SETUP
-#line 164 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 164 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 {;}
 	YY_BREAK
 case 89:
 YY_RULE_SETUP
-#line 165 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 165 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 ECHO;
 	YY_BREAK
-#line 1419 "/Users/tom/Documents/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/DerivedSources/c_lexer.yy.cpp"
+#line 1419 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/DerivedSources/c_lexer.yy.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2412,7 +2412,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 165 "/Users/tom/Documents/Compile/c_compiler/c_compiler/c_lexer.lpp"
+#line 165 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_lexer.lpp"
 
 
 

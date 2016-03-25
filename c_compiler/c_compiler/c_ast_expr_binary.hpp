@@ -34,9 +34,9 @@ typedef enum {
 	ASTBinaryExpressionTypeBooleanLessThan,
 	ASTBinaryExpressionTypeBooleanGreaterThanEquals,
 	ASTBinaryExpressionTypeBooleanLessThanEquals,
-	
-	ASTBinaryExpressionTypeAssign
 	/*
+	ASTBinaryExpressionTypeAssign
+	
 	ASTBinaryExpressionTypeAssign,
 	ASTBinaryExpressionTypeAssignAdd,
 	ASTBinaryExpressionTypeAssignSubtract,

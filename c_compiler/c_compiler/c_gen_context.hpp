@@ -20,6 +20,8 @@ public:
 	int idOffset(string id);
 	ostream& cs();
 	CContext(ostream *stream);
+	void newScope();
+	void endScope();
 private:
 	map<string,int> vartable;
 	int currentOffset;

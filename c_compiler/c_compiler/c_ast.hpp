@@ -26,25 +26,6 @@ class ASTType : public ASTNode {
 	//currently always just int
 };
 
-class ASTExpression : public ASTNode {
-public:
-	ASTType * type;
-};
-
-
-
-class ASTTernaryExpression : public ASTExpression {
-public:
-	ASTExpression *lhs;
-	ASTExpression * mhs;
-	ASTExpression * rhs;
-};
-
-class ASTPostExpression : public ASTExpression {
-public:
-	string * postop;
-};
-
 
 #endif
 

@@ -27,6 +27,7 @@
 	ASTStatementCompound* comp;
 	ASTFunction* func;
 	ASTNode* node;
+	ASTIdentifierExpression* idenExpr;
 	int other;
 }
 
@@ -41,10 +42,10 @@
 
 %token <other> tStringLit tFloatConst tCharConst tInvalid
 
-%type <expr> constant primaryexpression postfixexpression unaryexpression castexpression additiveexpression shiftexpression relationalexpression equalityexpression ANDexpression exclusiveORexpression inclusiveORexpression logicalANDexpression logicalORexpression conditionalexpression assignmentexpression expression constantexpression multiplicativeexpression
+%type <expr> constant primaryexpression postfixexpression unaryexpression castexpression additiveexpression shiftexpression relationalexpression equalityexpression ANDexpression exclusiveORexpression inclusiveORexpression logicalANDexpression logicalORexpression conditionalexpression expression constantexpression multiplicativeexpression assignmentexpression
 
 %type <rOperator> assignmentoperator unaryoperator
-
+%type <idenExpr> lvalidentifier
 %type <stat> statement returnstatement expressionstatement compoundstatement
 %type <comp> statementlist
 %type <func> specialfunction
@@ -66,6 +67,8 @@ void yyerror(const char* msg) {
 constant                : tIntegerConst {$$ = new ASTConstantExpression($1);}
 
 //**************3.3.1**************
+
+lvalidentifier       : tIdentifier                                        {$$ = new ASTIdentifierExpression($1);}
 
 primaryexpression       : tIdentifier                                        {$$ = new ASTIdentifierExpression($1);}
 						| constant
@@ -190,8 +193,8 @@ conditionalexpression	: logicalORexpression
 //************3.3.16**************
 
 assignmentexpression	: conditionalexpression
-						| unaryexpression assignmentoperator assignmentexpression
-									{$$ = new ASTBinaryExpression($2, $1, $3);}
+						| lvalidentifier assignmentoperator assignmentexpression //leftmost bit used to be unaryexpression
+									{$$ = new ASTCompoundAssignExpression($2, $1, $3);}
 
 assignmentoperator		: tAssignment
 						| tAssignLeftShift

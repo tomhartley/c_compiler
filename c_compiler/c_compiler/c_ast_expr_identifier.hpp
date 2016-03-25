@@ -10,15 +10,15 @@
 #define c_ast_expr_identifier_hpp
 
 #include <stdio.h>
-#include "c_ast.hpp"
+#include "c_ast_expr.hpp"
 
 class ASTIdentifierExpression : public ASTExpression {
 public:
 	ASTIdentifierExpression (RawIdentifier *raw);
 	void prettyprint(ostream &stream, string lp);
 	void codegen(CContext *context);
-private:
 	string identifier;
+private:
 	
 };
 

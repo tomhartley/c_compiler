@@ -14,6 +14,7 @@
 CContext::CContext(ostream *stream) {
 	ASMStream = stream;
 	currentOffset = 0;
+	//vartables.emplace_back(); //set up a table for global variables
 }
 
 ostream& CContext::cs() {
@@ -21,6 +22,9 @@ ostream& CContext::cs() {
 }
 
 int CContext::newIdentifier(string id) {
+	
+	
+	
 	vartable[id] = currentOffset;
 	currentOffset-=4;
 	cs() << "\t" << "ADDI $sp, $sp, -4"<< endl;
