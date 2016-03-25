@@ -4,7 +4,9 @@
 /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_ast_expr_assign.o
 /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_compiler.o
 /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_ast_statement_vardecl.o
+/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_ast_statement_if.o
 /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_lexer.yy.o
+/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_ast_expr_unary.o
 /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_ast_expr_binary.o
 /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_ast_statement_expression.o
 /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_ast_statement.o
@@ -13,7 +15,9 @@
 /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_gen_context.o
 /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_ast_function.o
 /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_ast_expr.o
+/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_ast_statement_for.o
 /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_tokens.o
 /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_ast_expr_constant.o
 /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_ast_statement_compound.o
+/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_ast_statement_while.o
 /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_ast_statement_return.o

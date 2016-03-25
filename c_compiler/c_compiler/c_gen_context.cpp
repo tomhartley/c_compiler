@@ -15,6 +15,7 @@ CContext::CContext(ostream *stream) {
 	ASMStream = stream;
 	totalOffset = 0;
 	vartables.emplace_back(); //set up a table for global variables
+	labelcounter = 0;
 }
 
 ostream& CContext::cs() {
@@ -54,4 +55,9 @@ void CContext::endScope() {
 	int amount = scopeOffsets.back();
 	scopeOffsets.pop_back();
 	cs() << "\t" << "ADDI $sp, $sp, "<< amount*-1 << " #ending scope" << endl; //reduce the stack back now those variables are out of scope.
+}
+
+string CContext::newlabel() {
+	labelcounter+=1;
+	return "$L" + to_string(labelcounter-1);
 }

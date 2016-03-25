@@ -19,13 +19,19 @@
 #include "c_ast_expr_constant.hpp"
 #include "c_ast_expr_identifier.hpp"
 #include "c_ast_expr_assign.hpp"
-#include "c_ast_compound_assign.hpp"
-#include "c_ast_statement_vardecl.hpp"
 
+#include "c_ast_compound_assign.hpp"
+
+#include "c_ast_statement_vardecl.hpp"
+#include "c_ast_statement_if.hpp"
 #include "c_ast_statement.hpp"
 #include "c_ast_statement_return.hpp"
 #include "c_ast_statement_compound.hpp"
 #include "c_ast_statement_expression.hpp"
+#include "c_ast_statement_while.hpp"
+#include "c_ast_statement_for.hpp"
+
+
 
 #include "c_ast_function.hpp"
 

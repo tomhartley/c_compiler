@@ -216,7 +216,7 @@
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 20 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_parser.ypp"
+#line 21 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_parser.ypp"
 {
 	RawInteger* rIntConst;
 	RawKeyword* rKeyword;
@@ -231,9 +231,10 @@ typedef union YYSTYPE
 	ASTVariableDeclarationStatement* vardecl;
 	pair<RawIdentifier*,ASTExpression*>* singdecl;
 	int other;
+	ASTIfStatement* ifstat;
 }
 /* Line 1529 of yacc.c.  */
-#line 237 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/DerivedSources/y.tab.h"
+#line 238 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/DerivedSources/y.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

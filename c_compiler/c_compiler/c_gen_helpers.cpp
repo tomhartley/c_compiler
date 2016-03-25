@@ -17,6 +17,10 @@ namespace gen {
 		ctxt->cs() << "\t" << "SW $" << reg << ", " << ctxt->idOffset(id) << "($fp)" << endl;
 	}
 	
+	void regToReg(CContext *ctxt, int dest, int orig) {
+		ctxt->cs() << "\t" << "MOVE $" << dest << ", $" << orig << endl;
+	}
+	
 	void pushStack(CContext *ctxt, int reg) {
 		ctxt->cs() << "\t" << "SW $"<< reg <<" , 0($sp)" << endl;
 		ctxt->cs() << "\t" << "ADDI $sp, $sp, -4 "<< endl;
@@ -35,8 +39,16 @@ namespace gen {
 		ctxt->cs() << "\t" << opcode << " $" << reg1 << ", $" << reg2 << ", " << imm << endl;
 	}
 	
+	void regregimm(CContext *ctxt, string opcode,int reg1, int reg2, string imm) {
+		ctxt->cs() << "\t" << opcode << " $" << reg1 << ", $" << reg2 << ", " << imm << endl;
+	}
+	
 	void regregreg(CContext *ctxt, string opcode,int reg1, int reg2, int reg3) {
 		ctxt->cs() << "\t" << opcode << " $" << reg1 << ", $" << reg2 << ", $" << reg3 << endl;
+	}
+	
+	void regimm(CContext *ctxt, string opcode, int reg, string imm) {
+		ctxt->cs() << "\t" << opcode << " $" << reg << ", " << imm << endl;
 	}
 	
 	void regreg(CContext *ctxt, string opcode,int reg1, int reg2) {

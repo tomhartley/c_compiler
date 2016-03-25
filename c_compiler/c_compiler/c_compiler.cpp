@@ -1,3 +1,5 @@
+
+
 #include "c_ast_h.hpp"
 
 #include "y.tab.h"
@@ -8,7 +10,8 @@ extern int yyparse (void);
 
 int main()
 {
-    yyparse();
+	
+	yyparse();
 	
     //Value *ast=g_ast;
 	CContext * context = new CContext(&cout);
@@ -17,7 +20,7 @@ int main()
 	
 	cout << endl;
 
-	g_ast->prettyprint(cout, "");
+	g_ast->prettyprint(cerr, "");
 	
     return 0;
 }

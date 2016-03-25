@@ -14,8 +14,11 @@ dependencies: \
   /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_ast_expr_assign.hpp \
   /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_ast_expr_identifier.hpp \
   /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_ast_statement_vardecl.hpp \
+  /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_ast_statement_if.hpp \
   /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/DerivedSources/y.tab.h \
   /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_ast_expr_constant.hpp \
   /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_ast_compound_assign.hpp \
   /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_ast_statement_return.hpp \
-  /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_ast_statement_expression.hpp
+  /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_ast_statement_expression.hpp \
+  /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_ast_statement_while.hpp \
+  /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_ast_statement_for.hpp

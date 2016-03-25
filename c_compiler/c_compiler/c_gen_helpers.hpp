@@ -19,12 +19,15 @@ using namespace std;
 namespace gen {
 	void varToReg(CContext *ctxt, int reg, string id);
 	void regToVar(CContext *ctxt, int reg, string id);
+	void regToReg(CContext *ctxt, int orig, int dest);
 	void pushStack(CContext *ctxt, int reg);
 	void popStack(CContext * ctxt, int reg);
 	void loadImmed(CContext *ctxt, int reg, int immediate);
 	void regregimm(CContext *ctxt, string opcode,int reg1, int reg2, int imm);
 	void regregreg(CContext *ctxt, string opcode,int reg1, int reg2, int reg3);
 	void regreg(CContext *ctxt, string opcode,int reg1, int reg2);
+	void regimm(CContext *ctxt, string opcode, int reg, string imm); //does not prepend $
+	void regregimm(CContext *ctxt, string opcode,int reg1, int reg2, string imm);
 	void reg(CContext *ctxt, string opcode,int reg1);
 	void nop(CContext *ctxt);
 	void label(CContext *ctxt, string labelstr);

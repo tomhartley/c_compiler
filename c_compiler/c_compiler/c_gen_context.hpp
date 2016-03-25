@@ -23,11 +23,13 @@ public:
 	CContext(ostream *stream);
 	void newScope();
 	void endScope();
+	string newlabel();
 private:
 	list<map<string,int>> vartables;
 	list<int> scopeOffsets;
 	int totalOffset;
 	ostream *ASMStream;
+	int labelcounter;
 };
 
 #endif /* c_gen_context_hpp */

@@ -1,5 +1,7 @@
 
 %{
+  #define YYINITDEPTH 100000
+  #define YYMAXDEPTH 100000
   #include <stdio.h>
   #include <vector>
   #include <string>
@@ -10,10 +12,9 @@
   void yyerror(const char *);
   
   #include "c_ast_h.hpp"
-  
   using namespace std;
   extern ASTNode *g_ast = NULL; // A way of getting the AST out
-  
+
   //! This is to fix problems when generating C++  
 %}
 
@@ -31,6 +32,7 @@
 	ASTVariableDeclarationStatement* vardecl;
 	pair<RawIdentifier*,ASTExpression*>* singdecl;
 	int other;
+	ASTIfStatement* ifstat;
 }
 
 
@@ -48,12 +50,13 @@
 
 %type <rOperator> assignmentoperator unaryoperator
 %type <idenExpr> lvalidentifier
-%type <stat> statement returnstatement expressionstatement compoundstatement
+%type <stat> statement returnstatement expressionstatement compoundstatement ifelsestatement whilestatement forloop
 %type <comp> statementlist
 %type <func> specialfunction
 %type <node> toplevel
 %type <vardecl> vardeclstatement decllist
 %type <singdecl> singleDecl
+%type <ifstat> ifstatement
 %start toplevel
 
 %{
@@ -250,6 +253,10 @@ statement				: returnstatement
 						| expressionstatement
 						| compoundstatement
 						| vardeclstatement		{$$ = $1;}
+						| ifstatement
+						| ifelsestatement
+						| whilestatement
+						| forloop
 
 expressionstatement		: expression tSemicolon
 								{$$ = new ASTStatementExpression($1);}
@@ -265,6 +272,18 @@ statementlist			: statementlist statement
 
 toplevel				: specialfunction
 								{g_ast = $1;}
+
+ifstatement				: tIf tLeftBracket expression tRightBracket statement
+{$$ = new ASTIfStatement($3,$5); }
+
+ifelsestatement			: ifstatement tElse statement
+								{$1->addElse($3); $$ = $1;}
+
+whilestatement			: tWhile tLeftBracket expression tRightBracket statement
+								{$$ = new ASTWhileStatement ($3,$5);}
+
+forloop					: tFor tLeftBracket expression tSemicolon expression tSemicolon expression tRightBracket statement
+								{$$ = new ASTForStatement($3,$5,$7,$9);}
 
 specialfunction			: tInt tIdentifier tLeftBracket tInt tIdentifier tComma tInt tIdentifier tRightBracket compoundstatement
 								{$$ = new ASTFunction($5->idenStr,$8->idenStr,$2->idenStr,$10);}

@@ -20,6 +20,7 @@ public:
 
 private:
 	ASTStatement *statements;
+	vector<string> params;
 	string parameter1;
 	string parameter2;
 	string functionname;

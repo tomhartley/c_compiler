@@ -17,19 +17,19 @@
 typedef enum {
 	ASTBinaryExpressionTypeAdd,				//done
 	ASTBinaryExpressionTypeSubtract,		//done
-	ASTBinaryExpressionTypeMultiply,
-	ASTBinaryExpressionTypeDivide,
-	ASTBinaryExpressionTypeModulo,
+	ASTBinaryExpressionTypeMultiply,		//done
+	ASTBinaryExpressionTypeDivide,			//done
+	ASTBinaryExpressionTypeModulo,			//done
 	ASTBinaryExpressionTypeLeftShift,		//done
 	ASTBinaryExpressionTypeRightShift,		//done
 	ASTBinaryExpressionTypeBitwiseAND,		//done
 	ASTBinaryExpressionTypeBitwiseOR,		//done
 	ASTBinaryExpressionTypeBitwiseXOR,		//done
 	
-	ASTBinaryExpressionTypeBooleanAND,
-	ASTBinaryExpressionTypeBooleanOR,
-	ASTBinaryExpressionTypeBooleanEqualTo,
-	ASTBinaryExpressionTypeBooleanNotEqualTo,
+	ASTBinaryExpressionTypeBooleanAND,					//done tested
+	ASTBinaryExpressionTypeBooleanOR,					//done tested
+	ASTBinaryExpressionTypeBooleanEqualTo,				//done
+	ASTBinaryExpressionTypeBooleanNotEqualTo,			//done
 	ASTBinaryExpressionTypeBooleanGreaterThan,			//done
 	ASTBinaryExpressionTypeBooleanLessThan,				//done
 	ASTBinaryExpressionTypeBooleanGreaterThanEquals,	//done

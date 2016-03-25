@@ -37,7 +37,7 @@ void ASTBinaryExpression::getData(RawOperator *op) {
 	opmap["<"] = make_pair(ASTBinaryExpressionTypeBooleanLessThan, false);
 	opmap[">="] = make_pair(ASTBinaryExpressionTypeBooleanGreaterThanEquals, false);
 	opmap["<="] = make_pair(ASTBinaryExpressionTypeBooleanLessThanEquals, false);
-
+	
 	//opmap["="] = make_pair(ASTBinaryExpressionTypeAssign, true);
 	opmap["+="] = make_pair(ASTBinaryExpressionTypeAdd, true);
 	opmap["-="] = make_pair(ASTBinaryExpressionTypeSubtract, true);
@@ -49,7 +49,6 @@ void ASTBinaryExpression::getData(RawOperator *op) {
 	opmap["&="] = make_pair(ASTBinaryExpressionTypeBitwiseAND, true);
 	opmap["|="] = make_pair(ASTBinaryExpressionTypeBitwiseOR, true);
 	opmap["^="] = make_pair(ASTBinaryExpressionTypeBitwiseXOR, true);
-
 	tie(optype,isAssignType) = opmap[rawOp->operatorStr];
 	lineNum = op->lineNum;
 	sourceFile = op->sourceFile;
@@ -65,10 +64,42 @@ void ASTBinaryExpression::prettyprint(ostream &stream,string lp) {
 }
 
 void ASTBinaryExpression::codegen(CContext *context) {
-	lhs->codegen(context);
-	gen::pushStack(context, 2);
+	if (optype==ASTBinaryExpressionTypeBooleanAND) {
+		//short circuit eval
+		string andfalse, afterand;
+		andfalse = context->newlabel();
+		afterand = context->newlabel();
+		lhs->codegen(context); //now it's in R2
+		gen::regregimm(context, "BEQ", 0, 2, andfalse);
+		rhs->codegen(context);
+		gen::regregimm(context, "BEQ", 0, 2, andfalse);
+		gen::loadImmed(context, 2, 1);
+		gen::regregimm(context, "BEQ", 0, 0, afterand);
+		gen::label(context, andfalse);
+		gen::loadImmed(context, 2, 0);
+		gen::label(context, afterand);
+		return;
+	} else if (optype==ASTBinaryExpressionTypeBooleanOR) {
+		string ortrue, afteror;
+		ortrue = context->newlabel();
+		afteror = context->newlabel();
+		lhs->codegen(context); //now it's in R2
+		gen::regregimm(context, "BNE", 0, 2, ortrue);
+		rhs->codegen(context); //now it's in R2
+		gen::regregimm(context, "BNE", 0, 2, ortrue);
+		gen::loadImmed(context, 2, 0);
+		gen::regregimm(context, "BEQ", 0, 0, afteror);
+		gen::label(context, ortrue);
+		gen::loadImmed(context, 2, 1);
+		gen::label(context, afteror);
+		return;
+	}
+	//these are loaded backwards to have them the right way around. Yeah.
 	rhs->codegen(context);
+	gen::pushStack(context, 2);
+	lhs->codegen(context);
 	gen::popStack(context, 3); //now the results are in reg 2 and reg 3
+	
 	switch (optype) {
 		case ASTBinaryExpressionTypeAdd:
 			gen::regregreg(context, "ADDU", 2, 2, 3);
@@ -94,7 +125,6 @@ void ASTBinaryExpression::codegen(CContext *context) {
 			gen::nop(context);
 			gen::nop(context);
 			break;
-			
 		case ASTBinaryExpressionTypeBitwiseAND:
 			gen::regregreg(context, "AND", 2, 2, 3);
 			break;
@@ -111,22 +141,30 @@ void ASTBinaryExpression::codegen(CContext *context) {
 			gen::regregreg(context, "SLL", 2, 2, 3);
 			break;
 		case ASTBinaryExpressionTypeBooleanGreaterThan:
-			gen::regregreg(context, "SLT", 2, 2, 3);
-			break;
-		case ASTBinaryExpressionTypeBooleanLessThan:
 			gen::regregreg(context, "SLT", 2, 3, 2);
 			break;
-		case ASTBinaryExpressionTypeBooleanGreaterThanEquals:
-			gen::regregimm(context, "ADDIU", 2, 2, -1);
+		case ASTBinaryExpressionTypeBooleanLessThan:
 			gen::regregreg(context, "SLT", 2, 2, 3);
 			break;
-		case ASTBinaryExpressionTypeBooleanLessThanEquals:
+		case ASTBinaryExpressionTypeBooleanGreaterThanEquals:
 			gen::regregimm(context, "ADDIU", 2, 2, 1);
 			gen::regregreg(context, "SLT", 2, 3, 2);
 			break;
+		case ASTBinaryExpressionTypeBooleanLessThanEquals:
+			gen::regregimm(context, "ADDIU", 2, 2, -1);
+			gen::regregreg(context, "SLT", 2, 2, 3);
+			break;
+		case ASTBinaryExpressionTypeBooleanEqualTo:
+			gen::regregreg(context, "XOR", 2, 2, 3);
+			gen::regregimm(context, "SLTU", 2, 2, 1);
+			break;
+		case ASTBinaryExpressionTypeBooleanNotEqualTo:
+			gen::regregreg(context, "XOR", 2, 2, 3);
+			gen::regregreg(context, "SLTU", 2, 0, 2);
+			break;
 		default:
-			cout << ";HMMMMMMMMM PROBABLY WON'T WORK " << endl;
-			throw 3;
+			cout << "This shouldn't happen" << endl;
+			throw 3; //[I'm confident it won't]
 			break;
 	}
 }
