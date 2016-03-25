@@ -15,25 +15,25 @@
 #include "y.tab.h"
 
 typedef enum {
-	ASTBinaryExpressionTypeAdd,
-	ASTBinaryExpressionTypeSubtract,
+	ASTBinaryExpressionTypeAdd,				//done
+	ASTBinaryExpressionTypeSubtract,		//done
 	ASTBinaryExpressionTypeMultiply,
 	ASTBinaryExpressionTypeDivide,
 	ASTBinaryExpressionTypeModulo,
-	ASTBinaryExpressionTypeLeftShift,
-	ASTBinaryExpressionTypeRightShift,
-	ASTBinaryExpressionTypeBitwiseAND,
-	ASTBinaryExpressionTypeBitwiseOR,
-	ASTBinaryExpressionTypeBitwiseXOR,
+	ASTBinaryExpressionTypeLeftShift,		//done
+	ASTBinaryExpressionTypeRightShift,		//done
+	ASTBinaryExpressionTypeBitwiseAND,		//done
+	ASTBinaryExpressionTypeBitwiseOR,		//done
+	ASTBinaryExpressionTypeBitwiseXOR,		//done
 	
 	ASTBinaryExpressionTypeBooleanAND,
 	ASTBinaryExpressionTypeBooleanOR,
 	ASTBinaryExpressionTypeBooleanEqualTo,
 	ASTBinaryExpressionTypeBooleanNotEqualTo,
-	ASTBinaryExpressionTypeBooleanGreaterThan,
-	ASTBinaryExpressionTypeBooleanLessThan,
-	ASTBinaryExpressionTypeBooleanGreaterThanEquals,
-	ASTBinaryExpressionTypeBooleanLessThanEquals,
+	ASTBinaryExpressionTypeBooleanGreaterThan,			//done
+	ASTBinaryExpressionTypeBooleanLessThan,				//done
+	ASTBinaryExpressionTypeBooleanGreaterThanEquals,	//done
+	ASTBinaryExpressionTypeBooleanLessThanEquals,		//done
 	/*
 	ASTBinaryExpressionTypeAssign
 	

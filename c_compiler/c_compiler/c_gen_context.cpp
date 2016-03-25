@@ -13,8 +13,8 @@
 
 CContext::CContext(ostream *stream) {
 	ASMStream = stream;
-	currentOffset = 0;
-	//vartables.emplace_back(); //set up a table for global variables
+	totalOffset = 0;
+	vartables.emplace_back(); //set up a table for global variables
 }
 
 ostream& CContext::cs() {
@@ -22,15 +22,36 @@ ostream& CContext::cs() {
 }
 
 int CContext::newIdentifier(string id) {
-	
-	
-	
-	vartable[id] = currentOffset;
-	currentOffset-=4;
+	vartables.back()[id] = totalOffset;
+	scopeOffsets.back()-=4;					//always points to an empty space
+	totalOffset -=4;
 	cs() << "\t" << "ADDI $sp, $sp, -4"<< endl;
-	return currentOffset;
+	return totalOffset;
 }
 
 int CContext::idOffset(string id) {
-	return vartable[id];
+	//iterate backwards to find it
+	for (auto rit=vartables.rbegin(); rit!=vartables.rend(); ++rit) {
+		auto a = (*rit).find(id);
+		if (a==(*rit).end()) {
+			continue;
+		} else {
+			//we found it!
+			return (*a).second;
+		}
+	}
+	throw 1; //this is definitely an error. variable not defined.
+}
+
+void CContext::newScope() {
+	vartables.emplace_back();
+	cs() << "\t#starting scope" << endl;
+	scopeOffsets.push_back(0);
+}
+
+void CContext::endScope() {
+	vartables.pop_back();
+	int amount = scopeOffsets.back();
+	scopeOffsets.pop_back();
+	cs() << "\t" << "ADDI $sp, $sp, "<< amount*-1 << " #ending scope" << endl; //reduce the stack back now those variables are out of scope.
 }

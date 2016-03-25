@@ -43,6 +43,14 @@ namespace gen {
 		ctxt->cs() << "\t" << opcode << " $" << reg1 << ", $" << reg2 << endl;
 	}
 	
+	void reg(CContext *ctxt, string opcode,int reg1) {
+		ctxt->cs() << "\t" << opcode << " $" << reg1 << endl;
+	}
+
+	void nop(CContext *ctxt) {
+		ctxt->cs() << "\t" << "NOP" << endl;
+	}
+	
 	void label(CContext *ctxt, string labelstr) {
 		ctxt->cs() << labelstr << ":" << endl;
 	}

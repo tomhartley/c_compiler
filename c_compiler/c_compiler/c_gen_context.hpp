@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <map>
+#include <list>
 
 using namespace std;
 
@@ -23,8 +24,9 @@ public:
 	void newScope();
 	void endScope();
 private:
-	map<string,int> vartable;
-	int currentOffset;
+	list<map<string,int>> vartables;
+	list<int> scopeOffsets;
+	int totalOffset;
 	ostream *ASMStream;
 };
 

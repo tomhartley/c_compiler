@@ -25,6 +25,7 @@
 		E2C587AD1CA216CF002C4C75 /* c_ast_expr_assign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E2C587AB1CA216CF002C4C75 /* c_ast_expr_assign.cpp */; };
 		E2C587B01CA217DF002C4C75 /* c_ast_expr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E2C587AE1CA217DF002C4C75 /* c_ast_expr.cpp */; };
 		E2C587B31CA21E21002C4C75 /* c_ast_compound_assign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E2C587B11CA21E21002C4C75 /* c_ast_compound_assign.cpp */; };
+		E2C587B61CA57E42002C4C75 /* c_ast_statement_vardecl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E2C587B41CA57E42002C4C75 /* c_ast_statement_vardecl.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -76,6 +77,8 @@
 		E2C587AF1CA217DF002C4C75 /* c_ast_expr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = c_ast_expr.hpp; sourceTree = "<group>"; };
 		E2C587B11CA21E21002C4C75 /* c_ast_compound_assign.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_ast_compound_assign.cpp; sourceTree = "<group>"; };
 		E2C587B21CA21E21002C4C75 /* c_ast_compound_assign.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = c_ast_compound_assign.hpp; sourceTree = "<group>"; };
+		E2C587B41CA57E42002C4C75 /* c_ast_statement_vardecl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_ast_statement_vardecl.cpp; sourceTree = "<group>"; };
+		E2C587B51CA57E42002C4C75 /* c_ast_statement_vardecl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = c_ast_statement_vardecl.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 			children = (
 				E22507BC1C9B01BE005F6E34 /* c_ast_statement_expression.cpp */,
 				E22507BD1C9B01BE005F6E34 /* c_ast_statement_expression.hpp */,
+				E2C587B41CA57E42002C4C75 /* c_ast_statement_vardecl.cpp */,
+				E2C587B51CA57E42002C4C75 /* c_ast_statement_vardecl.hpp */,
 				E22507B91C9AFE6A005F6E34 /* c_ast_statement_compound.cpp */,
 				E22507BA1C9AFE6A005F6E34 /* c_ast_statement_compound.hpp */,
 				E22507AD1C9AEE40005F6E34 /* c_ast_statement_return.cpp */,
@@ -241,6 +246,7 @@
 				E2C587B31CA21E21002C4C75 /* c_ast_compound_assign.cpp in Sources */,
 				E2C587AD1CA216CF002C4C75 /* c_ast_expr_assign.cpp in Sources */,
 				E239AF211C832C2B001634B6 /* c_compiler.cpp in Sources */,
+				E2C587B61CA57E42002C4C75 /* c_ast_statement_vardecl.cpp in Sources */,
 				E239AF221C832C2B001634B6 /* c_lexer.lpp in Sources */,
 				E22507A21C99C1A4005F6E34 /* c_ast_expr_binary.cpp in Sources */,
 				E22507BE1C9B01BE005F6E34 /* c_ast_statement_expression.cpp in Sources */,

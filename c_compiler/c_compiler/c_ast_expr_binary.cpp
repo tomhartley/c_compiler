@@ -76,6 +76,25 @@ void ASTBinaryExpression::codegen(CContext *context) {
 		case ASTBinaryExpressionTypeSubtract:
 			gen::regregreg(context, "SUBU", 2, 2, 3);
 			break;
+		case ASTBinaryExpressionTypeMultiply:
+			gen::regreg(context, "MULT", 2, 3);
+			gen::reg(context, "MFLO", 2);
+			gen::nop(context);
+			gen::nop(context);
+			break;
+		case ASTBinaryExpressionTypeDivide:
+			gen::regreg(context, "DIV", 2, 3);
+			gen::reg(context, "MFLO", 2);
+			gen::nop(context);
+			gen::nop(context);
+			break;
+		case ASTBinaryExpressionTypeModulo:
+			gen::regreg(context, "DIV", 2, 3);
+			gen::reg(context, "MFHI", 2);
+			gen::nop(context);
+			gen::nop(context);
+			break;
+			
 		case ASTBinaryExpressionTypeBitwiseAND:
 			gen::regregreg(context, "AND", 2, 2, 3);
 			break;
@@ -94,11 +113,20 @@ void ASTBinaryExpression::codegen(CContext *context) {
 		case ASTBinaryExpressionTypeBooleanGreaterThan:
 			gen::regregreg(context, "SLT", 2, 2, 3);
 			break;
+		case ASTBinaryExpressionTypeBooleanLessThan:
+			gen::regregreg(context, "SLT", 2, 3, 2);
+			break;
+		case ASTBinaryExpressionTypeBooleanGreaterThanEquals:
+			gen::regregimm(context, "ADDIU", 2, 2, -1);
+			gen::regregreg(context, "SLT", 2, 2, 3);
+			break;
 		case ASTBinaryExpressionTypeBooleanLessThanEquals:
+			gen::regregimm(context, "ADDIU", 2, 2, 1);
 			gen::regregreg(context, "SLT", 2, 3, 2);
 			break;
 		default:
 			cout << ";HMMMMMMMMM PROBABLY WON'T WORK " << endl;
+			throw 3;
 			break;
 	}
 }

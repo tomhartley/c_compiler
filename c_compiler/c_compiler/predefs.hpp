@@ -18,5 +18,6 @@
 #include "c_ast_statement_compound.hpp"
 #include "c_ast_function.hpp"
 #include "c_ast_expr_assign.hpp"
+#include "c_ast_statement_vardecl.hpp"
 
 #endif /* predefs_h */

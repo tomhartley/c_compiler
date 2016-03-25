@@ -25,7 +25,9 @@ void ASTStatementCompound::addStatement(ASTStatement *newstat) {
 }
 
 void ASTStatementCompound::codegen(CContext *context) {
+	context->newScope();
 	for (int i = 0; i<stats.size(); i++) {
 		stats[i]->codegen(context);
 	}
+	context->endScope();
 }

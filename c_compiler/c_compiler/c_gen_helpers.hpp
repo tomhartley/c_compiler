@@ -25,6 +25,8 @@ namespace gen {
 	void regregimm(CContext *ctxt, string opcode,int reg1, int reg2, int imm);
 	void regregreg(CContext *ctxt, string opcode,int reg1, int reg2, int reg3);
 	void regreg(CContext *ctxt, string opcode,int reg1, int reg2);
+	void reg(CContext *ctxt, string opcode,int reg1);
+	void nop(CContext *ctxt);
 	void label(CContext *ctxt, string labelstr);
 }
 

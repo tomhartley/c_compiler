@@ -20,6 +20,7 @@
 #include "c_ast_expr_identifier.hpp"
 #include "c_ast_expr_assign.hpp"
 #include "c_ast_compound_assign.hpp"
+#include "c_ast_statement_vardecl.hpp"
 
 #include "c_ast_statement.hpp"
 #include "c_ast_statement_return.hpp"

@@ -228,10 +228,12 @@ typedef union YYSTYPE
 	ASTFunction* func;
 	ASTNode* node;
 	ASTIdentifierExpression* idenExpr;
+	ASTVariableDeclarationStatement* vardecl;
+	pair<RawIdentifier*,ASTExpression*>* singdecl;
 	int other;
 }
 /* Line 1529 of yacc.c.  */
-#line 235 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/DerivedSources/y.tab.h"
+#line 237 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/DerivedSources/y.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

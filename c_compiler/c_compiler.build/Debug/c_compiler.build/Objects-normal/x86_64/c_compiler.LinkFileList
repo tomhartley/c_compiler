@@ -3,6 +3,7 @@
 /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_ast_compound_assign.o
 /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_ast_expr_assign.o
 /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_compiler.o
+/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_ast_statement_vardecl.o
 /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_lexer.yy.o
 /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_ast_expr_binary.o
 /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/Objects-normal/x86_64/c_ast_statement_expression.o

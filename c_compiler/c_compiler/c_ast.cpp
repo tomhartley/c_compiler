@@ -15,4 +15,5 @@ void ASTNode::prettyprint(ostream &stream) {
 
 void ASTNode::codegen(CContext *context) {
 	cout << "Undefined codegen called! - " << typeid(*this).name() << endl;
+	throw 2;
 }

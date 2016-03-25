@@ -11,4 +11,5 @@ dependencies: \
   /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_ast_function.hpp \
   /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_ast_expr_assign.hpp \
   /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_ast_expr_identifier.hpp \
+  /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler/c_ast_statement_vardecl.hpp \
   /Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/DerivedSources/y.tab.h
