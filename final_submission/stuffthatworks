@@ -1,0 +1,10 @@
+- The majority of expressions
+- If statements, else statements
+- Return statements
+- While loops (no break, no continue)
+- For loops (no break, no continue)
+- Single function only, but varying numbers of parameters (up to 4, at least)
+- No function calls ;( <— was next on my todo list
+- Amazing pretty printing of the AST (goes to stderr)
+- Short circuit evaluation works! So && doesn’t evaluate its RHS if LHS is zero [same with ||]
+- Fairly well architected code - no major hacks anywhere.

@@ -1,0 +1,301 @@
+
+%{
+  #define YYINITDEPTH 100000
+  #define YYMAXDEPTH 100000
+  #include <stdio.h>
+  #include <vector>
+  #include <string>
+  #include <sstream>
+  
+  #pragma clang diagnostic ignored "Weverything"
+  extern "C" int yylex(void);
+  void yyerror(const char *);
+  
+  #include "c_ast_h.hpp"
+  using namespace std;
+  extern ASTNode *g_ast = NULL; // A way of getting the AST out
+
+  //! This is to fix problems when generating C++  
+%}
+
+%union {
+	RawInteger* rIntConst;
+	RawKeyword* rKeyword;
+	RawIdentifier* rIdentifier;
+	RawOperator* rOperator;
+	ASTExpression* expr;
+	ASTStatement* stat;
+	ASTStatementCompound* comp;
+	ASTFunction* func;
+	ASTNode* node;
+	ASTIdentifierExpression* idenExpr;
+	ASTVariableDeclarationStatement* vardecl;
+	pair<RawIdentifier*,ASTExpression*>* singdecl;
+	int other;
+	ASTIfStatement* ifstat;
+	vector<string>* tlist;
+}
+
+
+%token <rIntConst> tIntegerConst
+
+%token <rKeyword> tAuto tDouble tInt tStruct tBreak tElse tLong tSwitch tCase tEnum tRegister tTypedef tChar tExtern tReturn tUnion tConst tFloat tShort tUnsigned tContinue tFor tSigned tVoid tDefault tGoto tVolatile tDo tIf tStatic tWhile
+    
+%token <rIdentifier> tIdentifier
+
+%token <rOperator> tSizeof tAssignLeftShift tAssignRightShift tEllipsis tAssignAND tAssignXOR tAssignOR tAssignMultiply tAssignDivide tAssignModulo tAssignAdd tAssignSubtract tShiftLeft tShiftRight tLessThanEquals tGreaterThanEquals tEquality tNotEquality tBooleanAND tBooleanOR tArrow tIncrement tDecrement tScopeBegin tLessThan tGreaterThan tScopeEnd tSemicolon tComma tLeftTernary tRightTernary tAssignment tBitwiseOR tHat tLeftSquareBracket tRightSquareBracket tLeftBracket tRightBracket tDot tBitwiseAND tMultiply tAdd tSubtract tTilde tNot tDivide tModulo
+
+%token <other> tStringLit tFloatConst tCharConst tInvalid
+
+%type <expr> constant primaryexpression postfixexpression unaryexpression castexpression additiveexpression shiftexpression relationalexpression equalityexpression ANDexpression exclusiveORexpression inclusiveORexpression logicalANDexpression logicalORexpression conditionalexpression expression constantexpression multiplicativeexpression assignmentexpression
+
+%type <rOperator> assignmentoperator unaryoperator
+%type <idenExpr> lvalidentifier
+%type <stat> statement returnstatement expressionstatement compoundstatement ifelsestatement whilestatement forloop
+%type <comp> statementlist
+%type <tlist> typelist;
+%type <func> function
+%type <node> toplevel
+%type <vardecl> vardeclstatement decllist
+%type <singdecl> singleDecl
+%type <ifstat> ifstatement
+%start toplevel
+
+%{
+struct pair_t *root=0;
+
+void yyerror(const char* msg) {
+     fprintf(stderr, "%s\n", msg);
+}
+%}
+
+%%
+//**************3.1.3**************
+//also not really spec but yolo
+constant                : tIntegerConst {$$ = new ASTConstantExpression($1);}
+
+//**************3.3.1**************
+
+lvalidentifier       : tIdentifier                                        {$$ = new ASTIdentifierExpression($1);}
+
+primaryexpression       : tIdentifier                                        {$$ = new ASTIdentifierExpression($1);}
+						| constant
+//                        | stringliteral                                        {;}
+						| tLeftBracket expression tRightBracket                {$$=$2;}
+
+//**************3.3.2**************
+postfixexpression       : primaryexpression                                                         {;}
+						| postfixexpression tLeftSquareBracket expression tRightSquareBracket       {;}
+						| postfixexpression tLeftBracket argumentexpressionlist tRightBracket       {;}
+						| postfixexpression tLeftBracket tRightBracket                              {;}
+						| postfixexpression tDot tIdentifier                                        {;}
+						| postfixexpression tArrow tIdentifier                                      {;}
+						| postfixexpression tIncrement                                              {;}
+						| postfixexpression tDecrement                                              {;}
+
+argumentexpressionlist: assignmentexpression
+						| argumentexpressionlist tComma assignmentexpression
+
+//**************3.3.3**************
+
+unaryexpression         : postfixexpression                                                          {;}
+						| tIncrement unaryexpression                                                {;}
+						| tDecrement unaryexpression                                                {;}
+						| unaryoperator castexpression                                              {;}
+						| tSizeof unaryexpression                                                   {;}
+						| tSizeof tLeftBracket typename tRightBracket                               {;}
+
+unaryoperator           : tBitwiseAND
+						| tMultiply
+						| tAdd
+						| tSubtract
+						| tTilde
+						| tNot
+
+//************3.3.4****************
+
+castexpression            : unaryexpression
+| tLeftBracket typename tRightBracket castexpression                        {;}
+
+//************3.3.5****************
+
+multiplicativeexpression	: castexpression
+							| multiplicativeexpression tMultiply castexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
+							| multiplicativeexpression tDivide castexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
+							| multiplicativeexpression tModulo castexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
+//************3.3.6****************
+
+additiveexpression		: multiplicativeexpression
+						| additiveexpression tAdd multiplicativeexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
+						| additiveexpression tSubtract multiplicativeexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
+
+//************3.3.7**************
+
+shiftexpression		: additiveexpression
+						| shiftexpression tShiftLeft additiveexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
+						| shiftexpression tShiftRight additiveexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
+
+//************3.3.8**************
+
+relationalexpression	: shiftexpression
+						| relationalexpression tLessThan shiftexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
+						| relationalexpression tGreaterThan shiftexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
+						| relationalexpression tLessThanEquals shiftexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
+						| relationalexpression tGreaterThanEquals shiftexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
+
+//************3.3.9**************
+
+equalityexpression		: relationalexpression
+						| equalityexpression tEquality relationalexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
+						| equalityexpression tNotEquality relationalexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
+
+//************3.3.10**************
+
+ANDexpression			: equalityexpression
+						| ANDexpression tBitwiseAND equalityexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
+
+//************3.3.11**************
+
+exclusiveORexpression : ANDexpression
+						| exclusiveORexpression tHat ANDexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
+
+//************3.3.12**************
+
+inclusiveORexpression : exclusiveORexpression
+						| inclusiveORexpression tBitwiseOR exclusiveORexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
+
+//************3.3.13**************
+
+logicalANDexpression	: inclusiveORexpression
+						| logicalANDexpression tBooleanAND inclusiveORexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
+
+//************3.3.14**************
+
+logicalORexpression	: logicalANDexpression
+						| logicalORexpression tBooleanOR logicalANDexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
+
+//************3.3.15**************
+
+conditionalexpression	: logicalORexpression
+						| logicalORexpression tLeftTernary expression tRightTernary conditionalexpression
+									{$$ = new ASTBinaryExpression($2, $1, $3);}
+
+//************3.3.16**************
+
+assignmentexpression	: conditionalexpression
+						| lvalidentifier assignmentoperator assignmentexpression //leftmost bit used to be unaryexpression
+									{$$ = new ASTCompoundAssignExpression($2, $1, $3);}
+
+assignmentoperator		: tAssignment
+						| tAssignLeftShift
+						| tAssignRightShift
+						| tAssignAND
+						| tAssignXOR
+						| tAssignOR
+						| tAssignMultiply
+						| tAssignDivide
+						| tAssignModulo
+						| tAssignSubtract
+						| tAssignAdd
+
+//************3.3.17**************
+
+expression				: assignmentexpression
+						| expression tComma assignmentexpression;
+
+//************3.4****************
+
+constantexpression		: conditionalexpression
+
+//Not-actually-spec-just-a-hack:
+
+typename				: tInt
+						| tVoid
+
+//********************************
+
+singleDecl				: tIdentifier tAssignment expression
+								{$$ = new pair<RawIdentifier*,ASTExpression*>($1,$3);}
+						| tIdentifier
+								{$$ = new pair<RawIdentifier*,ASTExpression*>($1,NULL);}
+
+decllist				: decllist tComma singleDecl
+								{$$ = $1; $1->addIdentifier($3->first,$3->second);}
+						| singleDecl
+								{$$ = new ASTVariableDeclarationStatement($1->first,$1->second);}
+vardeclstatement		: tInt decllist tSemicolon
+								{$$ = $2;}
+//********************************
+
+
+//Return statement [maybe not spec lololol]
+returnstatement			: tReturn expression tSemicolon
+								{$$ = new ASTStatementReturn($2);}
+						| tReturn tSemicolon
+								{$$ = new ASTStatementReturn();}
+
+statement				: returnstatement
+						| expressionstatement
+						| compoundstatement
+						| vardeclstatement		{$$ = $1;}
+						| ifstatement			{$$ = $1;}
+						| ifelsestatement
+						| whilestatement
+						| forloop
+
+expressionstatement		: expression tSemicolon
+								{$$ = new ASTStatementExpression($1);}
+
+compoundstatement		: tScopeBegin statementlist tScopeEnd
+								{$$ = $2;}
+
+
+statementlist			: statementlist statement
+								{$1->addStatement($2); $$ = $1;}
+						| statement
+								{$$ = new ASTStatementCompound(); $$->addStatement($1);}
+
+toplevel				: function
+								{g_ast = $1;}
+
+ifstatement				: tIf tLeftBracket expression tRightBracket statement
+{$$ = new ASTIfStatement($3,$5); }
+
+ifelsestatement			: ifstatement tElse statement
+								{$1->addElse($3); $$ = $1;}
+
+whilestatement			: tWhile tLeftBracket expression tRightBracket statement
+								{$$ = new ASTWhileStatement ($3,$5);}
+
+forloop					: tFor tLeftBracket expression tSemicolon expression tSemicolon expression tRightBracket statement
+								{$$ = new ASTForStatement($3,$5,$7,$9);}
+
+typelist				: typelist tComma typename tIdentifier
+								{$$->push_back($4->idenStr);}
+						| tInt tIdentifier
+								{$$ = new vector<string>(); $$->push_back($2->idenStr);}
+
+function			: typename tIdentifier tLeftBracket typelist tRightBracket compoundstatement
+								{$$ = new ASTFunction($2->idenStr,$4,$6);}
+					| typename tIdentifier tLeftBracket tRightBracket compoundstatement
+								{$$ = new ASTFunction($2->idenStr,new vector<string>(),$5);}
+
+%%
