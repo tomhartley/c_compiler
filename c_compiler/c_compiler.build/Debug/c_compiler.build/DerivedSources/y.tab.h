@@ -232,9 +232,10 @@ typedef union YYSTYPE
 	pair<RawIdentifier*,ASTExpression*>* singdecl;
 	int other;
 	ASTIfStatement* ifstat;
+	vector<string>* tlist;
 }
 /* Line 1529 of yacc.c.  */
-#line 238 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/DerivedSources/y.tab.h"
+#line 239 "/Users/tom/Documents/Imperial/Compile/c_compiler/c_compiler.build/Debug/c_compiler.build/DerivedSources/y.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

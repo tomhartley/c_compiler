@@ -4,10 +4,12 @@
 	.ent  f
 	.type  f, @function
 f:
-	MOVE $sp, $fp
-	ADDI $sp, $sp, -4
+	addiu	$sp,$sp,-8
+	sw	$fp,4($sp)
+	move	$fp,$sp
 	ADDI $sp, $sp, -4
 	SW $4, 0($fp)
+	ADDI $sp, $sp, -4
 	SW $5, -4($fp)
 	#starting scope
 	LI $2, 10
@@ -20,6 +22,9 @@ f:
 	BEQ $0, $2, $L0
 	#starting scope
 	LI $2, 1
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	JR $31
 	NOP
 	ADDI $sp, $sp, 0 #ending scope
@@ -36,6 +41,9 @@ $L1:
 	BEQ $0, $2, $L2
 	#starting scope
 	LI $2, 2
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	JR $31
 	NOP
 	ADDI $sp, $sp, 0 #ending scope
@@ -53,6 +61,9 @@ $L3:
 	BEQ $0, $2, $L4
 	#starting scope
 	LI $2, 3
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	JR $31
 	NOP
 	ADDI $sp, $sp, 0 #ending scope
@@ -70,6 +81,9 @@ $L5:
 	BEQ $0, $2, $L6
 	#starting scope
 	LI $2, 4
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	JR $31
 	NOP
 	ADDI $sp, $sp, 0 #ending scope
@@ -87,6 +101,9 @@ $L7:
 	BEQ $0, $2, $L8
 	#starting scope
 	LI $2, 5
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	JR $31
 	NOP
 	ADDI $sp, $sp, 0 #ending scope
@@ -103,6 +120,9 @@ $L9:
 	BEQ $0, $2, $L10
 	#starting scope
 	LI $2, 6
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	JR $31
 	NOP
 	ADDI $sp, $sp, 0 #ending scope
@@ -119,6 +139,9 @@ $L11:
 	BEQ $0, $2, $L12
 	#starting scope
 	LI $2, 7
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	JR $31
 	NOP
 	ADDI $sp, $sp, 0 #ending scope
@@ -135,6 +158,9 @@ $L13:
 	BEQ $0, $2, $L14
 	#starting scope
 	LI $2, 8
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	JR $31
 	NOP
 	ADDI $sp, $sp, 0 #ending scope
@@ -152,6 +178,9 @@ $L15:
 	BEQ $0, $2, $L16
 	#starting scope
 	LI $2, 9
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	JR $31
 	NOP
 	ADDI $sp, $sp, 0 #ending scope
@@ -175,6 +204,9 @@ $L17:
 	BEQ $0, $2, $L18
 	#starting scope
 	LI $2, 10
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	JR $31
 	NOP
 	ADDI $sp, $sp, 0 #ending scope
@@ -198,6 +230,9 @@ $L19:
 	BEQ $0, $2, $L20
 	#starting scope
 	LI $2, 11
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	JR $31
 	NOP
 	ADDI $sp, $sp, 0 #ending scope
@@ -221,6 +256,9 @@ $L21:
 	BEQ $0, $2, $L22
 	#starting scope
 	LI $2, 12
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	JR $31
 	NOP
 	ADDI $sp, $sp, 0 #ending scope
@@ -244,6 +282,9 @@ $L23:
 	BEQ $0, $2, $L24
 	#starting scope
 	LI $2, 13
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	JR $31
 	NOP
 	ADDI $sp, $sp, 0 #ending scope
@@ -267,6 +308,9 @@ $L25:
 	BEQ $0, $2, $L26
 	#starting scope
 	LI $2, 14
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	JR $31
 	NOP
 	ADDI $sp, $sp, 0 #ending scope
@@ -290,6 +334,9 @@ $L27:
 	BEQ $0, $2, $L28
 	#starting scope
 	LI $2, 15
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	JR $31
 	NOP
 	ADDI $sp, $sp, 0 #ending scope
@@ -316,6 +363,9 @@ $L29:
 	BEQ $0, $2, $L30
 	#starting scope
 	LI $2, 16
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	JR $31
 	NOP
 	ADDI $sp, $sp, 0 #ending scope
@@ -342,6 +392,9 @@ $L31:
 	BEQ $0, $2, $L32
 	#starting scope
 	LI $2, 17
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	JR $31
 	NOP
 	ADDI $sp, $sp, 0 #ending scope
@@ -368,6 +421,9 @@ $L33:
 	BEQ $0, $2, $L34
 	#starting scope
 	LI $2, 18
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	JR $31
 	NOP
 	ADDI $sp, $sp, 0 #ending scope
@@ -391,6 +447,9 @@ $L35:
 	BEQ $0, $2, $L36
 	#starting scope
 	LI $2, 19
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	JR $31
 	NOP
 	ADDI $sp, $sp, 0 #ending scope
@@ -584,14 +643,23 @@ $L41:
 	ADDU $2, $2, $3
 	SW $2, -8($fp)
 	LW $2, -8($fp)
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	JR $31
 	NOP
 	LI $2, 0
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	JR $31
 	NOP
 	ADDI $sp, $sp, 4 #ending scope
+	move	$sp,$fp
+	lw	$fp,4($sp)
+	addiu	$sp,$sp,8
 	LI $2, 0
 	JR  $31
 	NOP
-	.end
+	.end f
 

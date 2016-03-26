@@ -14,15 +14,13 @@
 
 class ASTFunction : public ASTNode {
 public:
-	ASTFunction(string par1, string par2, string fnname, ASTStatement* stats);
+	ASTFunction(string fnname, vector<string> *newpams, ASTStatement * stats);
 	void prettyprint(ostream &stream, string lp);
 	void codegen(CContext *context);
 
 private:
 	ASTStatement *statements;
 	vector<string> params;
-	string parameter1;
-	string parameter2;
 	string functionname;
 };
 
